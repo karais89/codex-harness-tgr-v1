@@ -257,7 +257,7 @@
 
     .questions {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-top: 14px;
     }
@@ -282,7 +282,7 @@
 
     .stage-map {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
     }
 
@@ -342,7 +342,7 @@
 
     .artifact-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
     }
 
@@ -380,6 +380,10 @@
 
     .artifact:nth-child(5) {
       --accent: var(--red);
+    }
+
+    .artifact:nth-child(6) {
+      --accent: var(--blue);
     }
 
     .success-lanes {
@@ -547,7 +551,7 @@
         <h1 id="page-title">Tiny Garden Restore는 게임보다 하네스 v1 검증이 먼저다</h1>
         <p class="lead">
           `codex-harness-tgr-v1`은 DBZ에서 검증한 최소 Codex 하네스를 두 번째 Unity 프로젝트에 이식하고,
-          상태 변화, 해금, 데이터 기반 진행, 검증, 세션 인수인계를 더 작은 게임 실험 안에서 확인하는 프로젝트다.
+          기획 브레인스토밍, 아트 방향 탐색, 상태 변화, 해금, 데이터 기반 진행, 검증, 세션 인수인계를 더 작은 게임 실험 안에서 확인하는 프로젝트다.
         </p>
         <p class="thesis">
           핵심 판단: TGR은 “조금 더 게임다운 DBZ 후속작”이 아니라, 반복 가능한 Unity/Codex 개발 방식을 남기기 위한 하네스 검증 프로젝트다.
@@ -559,8 +563,8 @@
         <ol class="route-list">
           <li>한 문장 목표를 먼저 잡는다.</li>
           <li>DBZ와 TGR의 검증 축 차이를 본다.</li>
-          <li>5개 실험 질문을 확인한다.</li>
-          <li>단계 0-5 흐름을 훑는다.</li>
+          <li>7개 실험 질문을 확인한다.</li>
+          <li>M0.5가 추가된 단계 흐름을 훑는다.</li>
           <li>성공 기준과 보류 항목만 남긴다.</li>
         </ol>
       </div>
@@ -588,8 +592,8 @@
         <div class="comparison">
           <div class="comparison-item tgr">
             <span class="label">검증 축</span>
-            <h3>상태와 진행</h3>
-            <p>오브젝트 상태 변화, 해금 조건, 데이터 기반 진행을 안정적으로 다룰 수 있는지 확인한다.</p>
+            <h3>기획, 아트, 상태와 진행</h3>
+            <p>기획 후보, 아트 방향, 오브젝트 상태 변화, 해금 조건, 데이터 기반 진행을 안정적으로 다룰 수 있는지 확인한다.</p>
           </div>
           <div class="comparison-item tgr">
             <span class="label">중심 흐름</span>
@@ -601,7 +605,7 @@
     </div>
 
     <div class="panel">
-      <h2 id="questions-title">이번 프로젝트가 답해야 하는 5개 질문</h2>
+      <h2 id="questions-title">이번 프로젝트가 답해야 하는 7개 질문</h2>
       <div class="questions">
         <div class="metric">
           <strong>하네스 재사용</strong>
@@ -610,6 +614,14 @@
         <div class="metric">
           <strong>규칙 생성 방지</strong>
           <span>Codex가 사용자 인터뷰 없이 게임 규칙을 임의로 만들지 않게 막는가?</span>
+        </div>
+        <div class="metric">
+          <strong>Creative 분리</strong>
+          <span>브레인스토밍, 후보 압축, concept brief를 구현 사양과 분리해 기록하는가?</span>
+        </div>
+        <div class="metric">
+          <strong>Art 기록</strong>
+          <span>아트 방향, 이미지 프롬프트, 생성 결과를 design/implementation과 섞지 않는가?</span>
         </div>
         <div class="metric">
           <strong>Unity 선택 고정</strong>
@@ -627,7 +639,7 @@
     </div>
 
     <div class="panel">
-      <h2 id="stage-title">추천 흐름: 단계 0-5</h2>
+      <h2 id="stage-title">추천 흐름: M0-M5 + M0.5</h2>
       <div class="stage-map">
         <div class="stage tone-blue">
           <small>단계 0</small>
@@ -635,26 +647,31 @@
           <p>DBZ 하네스를 TGR에 이식하고 DBZ 전용 문구가 남아 있는지 검증한다.</p>
         </div>
         <div class="stage tone-green">
+          <small>단계 0.5</small>
+          <h3>Creative Planning &amp; Art Direction Flow</h3>
+          <p>기획 작업장과 아트 기록 공간을 분리하고 엄격 모드 라우팅을 검증한다.</p>
+        </div>
+        <div class="stage tone-amber">
           <small>단계 1</small>
           <h3>Core Beliefs &amp; Game Loop Interview</h3>
           <p>구현 전에 TGR이 어떤 게임인지 사용자 인터뷰로 확정한다.</p>
         </div>
-        <div class="stage tone-amber">
+        <div class="stage tone-violet">
           <small>단계 2</small>
           <h3>Unity Setup + Data Model</h3>
           <p>Unity 구조와 GardenObject 데이터 모델을 먼저 고정한다.</p>
         </div>
-        <div class="stage tone-violet">
+        <div class="stage tone-red">
           <small>단계 3</small>
           <h3>First Playable Restore Loop</h3>
           <p>오브젝트 1개를 선택하고 복구하는 최소 플레이 루프를 만든다.</p>
         </div>
-        <div class="stage tone-red">
+        <div class="stage tone-blue">
           <small>단계 4</small>
           <h3>Unlock / Visual State / Verification Loop</h3>
           <p>2-3개 오브젝트로 상태 변화, 해금, 검증 문서 연결을 확인한다.</p>
         </div>
-        <div class="stage tone-blue">
+        <div class="stage tone-green">
           <small>단계 5</small>
           <h3>Handoff + Harness v1 Retrospective</h3>
           <p>문서만 읽고 이어받을 수 있는지 확인하고 v1 평가를 남긴다.</p>
@@ -666,16 +683,20 @@
       <h2 id="artifact-title">TGR에서 DBZ보다 한 단계 올릴 산출물</h2>
       <div class="artifact-grid">
         <div class="artifact">
+          <h3>Creative 작업장</h3>
+          <p>브레인스토밍, concept 후보, concept brief를 구현 사양과 분리해 기록한다.</p>
+        </div>
+        <div class="artifact">
+          <h3>Art 기록 공간</h3>
+          <p>아트 방향, 이미지 프롬프트, 생성 결과, 이미지 후보 판단을 추적한다.</p>
+        </div>
+        <div class="artifact">
           <h3>Unity 셋업 문서</h3>
           <p>Unity 버전, 2D/3D, URP, 씬, 입력, UI, 데이터, 테스트 선택을 고정한다.</p>
         </div>
         <div class="artifact">
           <h3>GardenObject 데이터</h3>
           <p>Locked, Available, Restored 같은 상태와 해금 조건을 데이터로 표현한다.</p>
-        </div>
-        <div class="artifact">
-          <h3>작은 아트 방향성</h3>
-          <p>따뜻한 정원 복구, 파스텔톤, 임시 표식 허용 같은 화면 기준을 잡는다.</p>
         </div>
         <div class="artifact">
           <h3>검증 체크리스트</h3>
@@ -704,6 +725,8 @@
           <h3>실질 성공</h3>
           <ul class="plain-list">
             <li>core-beliefs와 gameplay loop가 승인됨</li>
+            <li>creative 브레인스토밍과 concept brief 초안이 분리됨</li>
+            <li>art direction, 이미지 프롬프트, 생성 결과 기록 기준이 생김</li>
             <li>Unity project setup 문서가 생김</li>
             <li>GardenObject 상태 모델이 생김</li>
             <li>Play Mode에서 오브젝트 1개 이상을 복구함</li>
@@ -742,26 +765,30 @@
       <div class="stack">
         <h2 id="next-title">지금 바로 할 일</h2>
         <p>
-          현재 다음 작업은 구현이 아니라 프로젝트 목표 고정이다. 저장소가 하네스를 제대로 초기화했는지 점검하고,
-          남은 DBZ 전용 내용과 TGR 장기 결정을 분리한 뒤, 단계 1에서 물어야 할 인터뷰 질문을 준비한다.
+          현재 다음 작업은 구현이 아니라 creative 브레인스토밍과 core-beliefs 인터뷰 준비다. 저장소가 하네스를 제대로 초기화했는지 점검하고,
+          creative/art 작업장이 구현 사양과 분리되어 있는지 확인한 뒤, creative 브레인스토밍에서 물어야 할 질문을 준비한다.
         </p>
       </div>
       <pre class="prompt">README.md, AGENTS.md, PLANS.md, docs/current-state.md,
-docs/decisions.md, docs/design/README.md,
-docs/design/core-beliefs.md, exec-plans/000-bootstrap.md를 읽어라.
+docs/decisions.md, docs/creative/README.md,
+docs/creative/01-brainstorming.md, docs/art/README.md,
+docs/art/01-art-direction.md, docs/design/README.md,
+docs/design/core-beliefs.md, exec-plans/000-bootstrap.md,
+exec-plans/001-creative-art-workflow.md를 읽어라.
 
-목적: 두 번째 프로젝트의 목표를 확정하기 전 상태를 점검한다.
+목적: creative 브레인스토밍을 시작하기 전 상태를 점검한다.
 
 1. DBZ 하네스를 올바르게 초기화했는지 점검한다.
 2. DBZ 전용 문구, 결정, gameplay 기준이 남았는지 찾는다.
 3. current-state가 TGR 상태를 정확히 설명하는지 확인한다.
 4. 장기 하네스 결정과 제거할 DBZ 전용 결정을 구분한다.
 5. core-beliefs가 상태: 작성 전인지 확인한다.
-6. 아직 gameplay 구현, Unity 씬 구현, 새 코드 작성은 하지 않는다.</pre>
+6. docs/creative와 docs/art가 구현 사양이 아니라 작업장으로 분리되어 있는지 확인한다.
+7. 아직 gameplay 구현, Unity 씬 구현, 새 코드 작성은 하지 않는다.</pre>
     </div>
 
     <p class="source">
-      Source: <code>docs/project-goal.md</code>. 원문의 단계 흐름은 이 HTML에서 `단계 0-5`로 정리했다.
+      Source: <code>docs/project-goal.md</code>. 원문의 단계 흐름은 이 HTML에서 `M0-M5 + M0.5`로 정리했다.
     </p>
   </div>
 </body>

@@ -1,7 +1,7 @@
 좋아. 나는 두 번째 프로젝트 `codex-harness-tgr-v1`의 목표를 이렇게 잡는 게 가장 좋아 보여.
 
 > **목표:**
-> DBZ에서 검증한 최소 Codex 하네스를 두 번째 Unity 프로젝트에 이식하고, 이번에는 **게임플레이보다 “Unity 프로젝트를 반복 가능하게 설계·데이터화·구현·검증하는 v1 하네스”**를 검증한다.
+> DBZ에서 검증한 최소 Codex 하네스를 두 번째 Unity 프로젝트에 이식하고, 이번에는 **게임플레이보다 “Unity 프로젝트를 반복 가능하게 기획·아트 탐색·설계·데이터화·구현·검증하는 v1 하네스”**를 검증한다.
 
 DBZ는 이미 “작은 Unity 2D 퍼즐 게임을 Codex 기반 워크플로우로 끝까지 만들 수 있는가”를 검증한 실험이었고, README에도 DBZ의 중심 산출물이 큰 게임이 아니라 문서 읽기, 사용자 인터뷰, ExecPlan, 구현 승인, Unity 구현, 검증, 인수인계 흐름을 확인한 기록이라고 되어 있어. ([GitHub][1]) 현재 상태도 M5 공개 포트폴리오/회고 패키지까지 완료했고, 5 x 5 격자에서 `BOT`이 `BOX`를 주워 `GOAL`에 배달하는 최소 루프까지 플레이 가능한 상태로 정리되어 있어. ([GitHub][1])
 
@@ -15,9 +15,9 @@ DBZ가 검증한 것은:
 
 TGR에서 검증해야 할 것은:
 
-> “상태 변화, 오브젝트 해금, 데이터 기반 진행, 아트 방향성까지 포함한 작은 Unity 게임을 Codex 하네스로 안정적으로 만들 수 있는가?”
+> “기획 브레인스토밍, 아트 방향 탐색, 상태 변화, 오브젝트 해금, 데이터 기반 진행까지 포함한 작은 Unity 게임을 Codex 하네스로 안정적으로 만들 수 있는가?”
 
-즉, DBZ가 **움직임/승패/Retry** 실험이었다면, TGR은 **상태/진행/해금/연출/데이터** 실험으로 가는 게 좋아.
+즉, DBZ가 **움직임/승패/Retry** 실험이었다면, TGR은 **기획/아트/상태/진행/해금/연출/데이터** 실험으로 가는 게 좋아.
 
 예를 들면 이런 게임이야.
 
@@ -33,9 +33,11 @@ TGR에서 검증해야 할 것은:
 
 1. **DBZ 하네스를 다른 Unity 프로젝트에 재사용할 수 있는가?**
 2. **Codex가 사용자 인터뷰 없이 임의로 게임 규칙을 만들지 않게 막을 수 있는가?**
-3. **Unity 프로젝트 셋업, 폴더 구조, 데이터 구조, 검증 기준을 v1 하네스 문서로 고정할 수 있는가?**
-4. **단순 코드 구현이 아니라, 상태 변화/해금/데이터 기반 진행을 안정적으로 구현하게 만들 수 있는가?**
-5. **다음 프로젝트에도 복사 가능한 “Unity 전용 하네스 최소 세트”를 만들 수 있는가?**
+3. **기획 브레인스토밍, 후보 압축, concept brief를 구현 사양과 분리해서 기록할 수 있는가?**
+4. **아트 방향, 이미지 프롬프트, 생성 이미지 결과를 design/implementation과 섞지 않고 관리할 수 있는가?**
+5. **Unity 프로젝트 셋업, 폴더 구조, 데이터 구조, 검증 기준을 v1 하네스 문서로 고정할 수 있는가?**
+6. **단순 코드 구현이 아니라, 상태 변화/해금/데이터 기반 진행을 안정적으로 구현하게 만들 수 있는가?**
+7. **다음 프로젝트에도 복사 가능한 “Unity 전용 하네스 최소 세트”를 만들 수 있는가?**
 
 DBZ 회고에서도 다음 프로젝트에 가져갈 규칙으로 `README.md`, `AGENTS.md`, `PLANS.md`, `docs/current-state.md`, `docs/decisions.md`를 먼저 읽고, 사소하지 않은 작업은 인터뷰와 공유된 이해 검증 뒤 ExecPlan을 만들며, ExecPlan 생성 승인과 구현 승인을 분리하라고 정리되어 있어. ([GitHub][2]) 또 DBZ 회고는 Unity MCP, custom skill, hooks, subagent는 아직 보류하고, 반복 마찰이 확인되면 다시 검토하자는 결론을 냈어. ([GitHub][2])
 
@@ -43,9 +45,47 @@ DBZ 회고에서도 다음 프로젝트에 가져갈 규칙으로 `README.md`, `
 
 ## TGR에서 DBZ보다 한 단계 올릴 부분
 
-DBZ에서는 주로 “하네스가 작동하는가”를 봤다면, TGR에서는 아래 5개를 추가로 검증하면 좋겠어.
+DBZ에서는 주로 “하네스가 작동하는가”를 봤다면, TGR에서는 아래 6개를 추가로 검증하면 좋겠어.
 
-### 1. Unity Project Setup 문서화
+### 1. Creative 기획 흐름
+
+DBZ에서는 구현 가능한 작은 루프를 바로 좁히는 흐름이 강했어. TGR에서는 실제 협업처럼 먼저 기획 아이디어를 넓히고, 후보를 압축하고, 기획 초안을 만드는 흐름을 문서로 남기는 게 좋아.
+
+```text
+docs/creative/README.md
+docs/creative/01-brainstorming.md
+docs/creative/02-concept-candidates.md
+docs/creative/03-concept-brief.md
+```
+
+여기서 중요한 건 `docs/creative`가 확정 구현 사양이 아니라는 점이야.
+아이디어와 후보는 작업장에 남기고, player-facing 규칙이나 구현 기준으로 쓸 내용만 별도 검증과 승인 후 `docs/design`으로 넘어가야 해.
+
+### 2. Art 방향과 이미지 생성 기록
+
+TGR은 완성 아트가 없어도 되지만, 아트 방향성과 이미지 생성 기록은 필요해.
+
+```text
+docs/art/README.md
+docs/art/01-art-direction.md
+docs/art/02-image-prompts.md
+docs/art/03-generated-results.md
+docs/art/images/
+```
+
+내용은 아주 작게 시작하면 돼.
+
+```text
+- 따뜻한 정원 복구 느낌
+- 파스텔톤
+- 2D top-down 또는 2.5D 느낌
+- 임시 도형/텍스트 표식 허용
+- 이미지 프롬프트와 생성 결과의 채택/보류/폐기 이유 기록
+```
+
+여기서 중요한 건 “아트를 잘 만드는 것”이 아니라, **Codex가 화면을 구성할 때 어떤 분위기를 기준으로 삼아야 하는지**와 **생성 이미지가 곧바로 Unity 에셋 또는 gameplay 사양이 아니라는 경계**를 고정하는 거야.
+
+### 3. Unity Project Setup 문서화
 
 DBZ에는 최소 하네스가 있었지만, Unity 전용 셋업 질문은 아직 약했어. TGR에는 이 문서가 들어가면 좋아.
 
@@ -72,7 +112,7 @@ docs/unity/project-setup.md
 이게 v1의 핵심이야.
 DBZ의 `AGENTS.md`, `PLANS.md`가 “작업 규칙”이었다면, TGR의 `docs/unity/project-setup.md`는 “Unity 프로젝트 선택지 고정 문서”가 되는 거지.
 
-### 2. 데이터 기반 오브젝트 상태
+### 4. 데이터 기반 오브젝트 상태
 
 TGR의 게임 목표는 복잡한 조작보다 이쪽이 좋아.
 
@@ -101,27 +141,7 @@ GardenObject
 
 DBZ는 `BOT`, `BOX`, `GOAL`의 규칙이 코드 안에 가까웠다면, TGR은 최소한의 데이터 정의를 둬서 Codex가 “데이터를 읽고 상태를 바꾸는 게임”을 만들게 하는 게 좋아.
 
-### 3. 작은 아트 방향성
-
-TGR은 완성 아트가 없어도 되지만, 아트 방향성 문서는 필요해.
-
-```text
-docs/art/art-direction.md
-```
-
-내용은 아주 작게.
-
-```text
-- 따뜻한 정원 복구 느낌
-- 파스텔톤
-- 2D top-down 또는 2.5D 느낌
-- 임시 도형/텍스트 표식 허용
-- AI 생성 이미지나 외부 에셋은 M1 범위 제외
-```
-
-여기서 중요한 건 “아트를 잘 만드는 것”이 아니라, **Codex가 화면을 구성할 때 어떤 분위기를 기준으로 삼아야 하는지**를 고정하는 거야.
-
-### 4. 검증 기준 확장
+### 5. 검증 기준 확장
 
 DBZ에서는 Play Mode 체크리스트와 Edit Mode 테스트가 잘 작동했어. DBZ 회고에서도 수동 Play Mode 검증과 Edit Mode 테스트를 함께 두는 방식이 유효했다고 정리되어 있어. ([GitHub][2])
 
@@ -146,7 +166,7 @@ docs/verification/data-state-checklist.md
 
 이러면 DBZ보다 한 단계 더 실무적인 검증이 돼.
 
-### 5. 하네스 v1 평가 문서
+### 6. 하네스 v1 평가 문서
 
 TGR의 마지막 산출물은 게임 자체보다 이 문서가 중요해.
 
@@ -175,6 +195,7 @@ docs/harness-v1-retrospective.md
 
 ```text
 M0. Bootstrap & Harness Reuse Check
+M0.5. Creative Planning & Art Direction Flow
 M1. Core Beliefs & Game Loop Interview
 M2. Unity Setup + Data Model
 M3. First Playable Restore Loop
@@ -204,6 +225,40 @@ exec-plans/000-bootstrap.md
 ```
 
 DBZ의 재사용 가이드에서도 최소 하네스 재사용 기준은 `.gitignore`, `README.md`, `AGENTS.md`, `PLANS.md`, `docs/current-state.md`, `docs/decisions.md`, `docs/design/README.md`, `docs/design/core-beliefs.md`, `exec-plans/000-bootstrap.md` 구조로 정리되어 있어. ([GitHub][3]) 그리고 새 프로젝트에서는 `README.md`, `docs/current-state.md`, `docs/decisions.md`, `core-beliefs.md`, `000-bootstrap.md`를 새 프로젝트 기준으로 초기화해야 한다고 되어 있어. ([GitHub][3])
+
+### M0.5. Creative Planning & Art Direction Flow
+
+목표:
+
+```text
+M1에서 gameplay 방향을 확정하기 전에, 기획 아이디어와 아트 방향을 별도 작업장에 기록하고 엄격 모드 라우팅 기준을 검증한다.
+```
+
+산출물:
+
+```text
+docs/creative/README.md
+docs/creative/01-brainstorming.md
+docs/creative/02-concept-candidates.md
+docs/creative/03-concept-brief.md
+docs/art/README.md
+docs/art/01-art-direction.md
+docs/art/02-image-prompts.md
+docs/art/03-generated-results.md
+docs/art/images/
+exec-plans/001-creative-art-workflow.md
+```
+
+이 단계에서 Codex가 해야 할 일은 구현이 아니라 라우팅이야.
+
+```text
+creative/art 내용은 먼저 해당 폴더에 기록한다.
+그 내용이 플레이어 경험이나 구현 기준을 바꾸면 docs/design 갱신 절차로 넘긴다.
+그렇지 않으면 docs/design은 건드리지 않는다.
+```
+
+특히 이미지 생성 결과는 art 후보 또는 참고 자료일 뿐이야.
+실제 Unity 에셋으로 쓰려면 별도 design 또는 ExecPlan 승인 절차가 필요해.
 
 ### M1. Core Beliefs & Game Loop Interview
 
@@ -354,6 +409,8 @@ TGR은 아래를 만족하면 성공이라고 보면 돼.
 
 ```text
 - 인터뷰를 통해 TGR core-beliefs와 gameplay loop가 승인됨
+- creative 브레인스토밍, concept 후보, concept brief 초안이 분리됨
+- art direction, 이미지 프롬프트, 생성 결과 기록 기준이 생김
 - Unity project setup 문서가 생김
 - 데이터 기반 GardenObject 상태 모델이 생김
 - Play Mode에서 오브젝트 1개 이상을 복구할 수 있음
@@ -375,21 +432,25 @@ TGR은 아래를 만족하면 성공이라고 보면 돼.
 
 이 문장을 README 상단 목표로 써도 될 정도야.
 
-> **Tiny Garden Restore는 Codex Harness v1을 검증하기 위한 작은 Unity 2D 복구 게임 실험이다. 이 프로젝트의 목표는 큰 게임을 만드는 것이 아니라, 사용자 인터뷰, Unity 셋업 결정, 데이터 기반 오브젝트 상태, Play Mode 검증, 세션 인수인계를 포함한 반복 가능한 Unity 개발 하네스를 검증하는 것이다.**
+> **Tiny Garden Restore는 Codex Harness v1을 검증하기 위한 작은 Unity 2D 복구 게임 실험이다. 이 프로젝트의 목표는 큰 게임을 만드는 것이 아니라, 사용자 인터뷰, 기획 브레인스토밍, 아트 방향 탐색, Unity 셋업 결정, 데이터 기반 오브젝트 상태, Play Mode 검증, 세션 인수인계를 포함한 반복 가능한 Unity 개발 하네스를 검증하는 것이다.**
 
 ## 지금 바로 다음 단계
 
-지금은 M0 이후라면, 다음 작업은 구현이 아니라 **TGR 프로젝트 목표 고정**이야.
+지금은 M0와 M0.5 이후라면, 다음 작업은 구현이 아니라 **creative 브레인스토밍과 core-beliefs 인터뷰 준비**야.
 
 Codex에게 바로 던질 프롬프트는 이게 좋아.
 
 ```text
-README.md, AGENTS.md, PLANS.md, docs/current-state.md, docs/decisions.md, docs/design/README.md, docs/design/core-beliefs.md, exec-plans/000-bootstrap.md를 읽어라.
+README.md, AGENTS.md, PLANS.md, docs/current-state.md, docs/decisions.md,
+docs/creative/README.md, docs/creative/01-brainstorming.md,
+docs/art/README.md, docs/art/01-art-direction.md,
+docs/design/README.md, docs/design/core-beliefs.md,
+exec-plans/000-bootstrap.md, exec-plans/001-creative-art-workflow.md를 읽어라.
 
 이 프로젝트는 codex-harness-tgr-v1이다.
 
 Delivery Bot Zero의 gameplay, 코드, 완료된 ExecPlan을 복사하지 마라.
-현재 작업의 목적은 두 번째 프로젝트의 목표를 확정하기 전 상태를 점검하는 것이다.
+현재 작업의 목적은 creative 브레인스토밍을 시작하기 전 상태를 점검하는 것이다.
 
 다음을 수행하라.
 
@@ -399,7 +460,8 @@ Delivery Bot Zero의 gameplay, 코드, 완료된 ExecPlan을 복사하지 마라
 4. docs/decisions.md에 남길 수 있는 장기 하네스 결정과 제거해야 할 DBZ 전용 결정을 구분하라.
 5. docs/design/core-beliefs.md가 상태: 작성 전인지 확인하라.
 6. 아직 gameplay 구현, Unity 씬 구현, 새 코드 작성은 하지 마라.
-7. 점검 결과를 요약하고, M1에서 사용자 인터뷰로 확인해야 할 질문 목록을 제안하라.
+7. docs/creative와 docs/art가 구현 사양이 아니라 작업장으로 분리되어 있는지 확인하라.
+8. 점검 결과를 요약하고, creative 브레인스토밍에서 먼저 확인해야 할 질문 목록을 제안하라.
 
 파일을 수정하기 전에 어떤 파일을 수정할지와 수정 이유를 먼저 보고하라.
 ```
