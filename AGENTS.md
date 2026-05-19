@@ -14,10 +14,11 @@
 2. `AGENTS.md`
 3. `docs/current-state.md`가 있으면 읽습니다.
 4. `docs/decisions.md`가 있으면 읽습니다.
-5. 기획, 아이디어 발산, 후보 압축, concept brief 작업이면 `docs/creative/README.md`를 읽습니다.
-6. 아트 방향, 이미지 프롬프트, 생성 이미지 기록 작업이면 `docs/art/README.md`를 읽습니다.
-7. 작업에 ExecPlan이 필요하면 `PLANS.md`를 읽습니다.
-8. `exec-plans/` 아래의 관련 ExecPlan이 있으면 읽습니다.
+5. creative, art, design, ExecPlan 작업이면 `docs/workflows/grill-me.md`를 읽습니다.
+6. 기획, 아이디어 발산, 후보 압축, concept brief 작업이면 `docs/creative/README.md`를 읽습니다.
+7. 아트 방향, 이미지 프롬프트, 생성 이미지 기록 작업이면 `docs/art/README.md`를 읽습니다.
+8. 작업에 ExecPlan이 필요하면 `PLANS.md`를 읽습니다.
+9. `exec-plans/` 아래의 관련 ExecPlan이 있으면 읽습니다.
 
 ## 규칙
 
@@ -65,6 +66,8 @@ Codex는 사용자 요청을 먼저 분류합니다.
 - `단순 구현/문서`: 기존 승인 기준과 계획 안에서 수행하는 좁은 작업입니다.
 
 분류나 영향 범위가 애매하면 Codex는 파일을 수정하지 않고 사용자에게 먼저 질문합니다.
+
+creative, art, design, ExecPlan 작업은 단순 기록 요청이 아닌 한 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Protocol`을 따른다. Codex는 공유된 이해가 닫힐 때까지 decision tree를 하나씩 질문하고, 각 질문에는 현재 이해, 막힌 결정, 추천 답안, 질문을 포함한다.
 
 예:
 

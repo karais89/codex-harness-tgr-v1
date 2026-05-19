@@ -8,15 +8,15 @@ Tiny Garden Restore
 
 ## 현재 단계
 
-Creative/Art Workflow Setup
+Grill-Me Discovery Protocol Setup
 
-이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용하는 단계입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
+이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조 위에 `grill-me` 기반 공통 discovery protocol을 연결하는 단계입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
 
 ## 활성 계획
 
-`exec-plans/001-creative-art-workflow.md`
+`exec-plans/002-grill-me-discovery-protocol.md`
 
-이 계획은 creative, art, design, ExecPlan, implementation이 반복적으로 오갈 수 있는 문서 흐름과 엄격 모드 라우팅 규칙을 도입한 계획입니다. 현재 상태는 `완료`입니다.
+이 계획은 creative, art, design, ExecPlan 작업이 공유된 이해에 도달할 때까지 `grill-me` 방식 인터뷰를 거치도록 공통 workflow protocol을 도입하는 계획입니다. 현재 상태는 `완료`입니다.
 
 ## 완료됨
 
@@ -31,12 +31,16 @@ Creative/Art Workflow Setup
 - `docs/creative/`와 `docs/art/`의 기본 문서 구조를 추가했습니다.
 - creative/art/design/ExecPlan 영향이 애매하면 질문하는 엄격 모드 라우팅 규칙을 추가했습니다.
 - `exec-plans/001-creative-art-workflow.md`의 검증과 회고를 완료했습니다.
+- `exec-plans/002-grill-me-discovery-protocol.md`의 구현 승인을 받았습니다.
+- `docs/workflows/grill-me.md`를 공통 discovery protocol 문서로 추가했습니다.
+- `AGENTS.md`, `PLANS.md`, `docs/creative/README.md`, `docs/art/README.md`, `docs/design/README.md`가 공통 protocol을 참조하도록 연결했습니다.
+- `exec-plans/002-grill-me-discovery-protocol.md`의 검증과 회고를 완료했습니다.
 
 ## 다음 단계
 
-1. `docs/creative/README.md`를 읽고 creative 브레인스토밍을 시작합니다.
-2. `docs/creative/01-brainstorming.md`에 아이디어 발산을 기록합니다.
-3. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
+1. 다음 creative 작업부터 `docs/workflows/grill-me.md`와 `docs/creative/README.md`를 함께 읽고 브레인스토밍을 시작합니다.
+2. Codex는 아이디어 목록을 바로 쓰지 않고, 공유된 이해가 닫힐 때까지 한 번에 하나씩 질문합니다.
+3. 아트 방향 논의가 시작되면 `docs/workflows/grill-me.md`와 `docs/art/README.md`를 함께 읽습니다.
 
 ## 아직 하지 않음
 
