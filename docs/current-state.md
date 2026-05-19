@@ -33,13 +33,15 @@ Creative 1차 후보 정리
 - `exec-plans/001-creative-art-workflow.md`의 검증과 회고를 완료했습니다.
 - `docs/creative/01-brainstorming.md`에 작은 분수 복구 노드 퍼즐 아이디어를 1차 기록했습니다.
 - `docs/creative/02-concept-candidates.md`에 `C-01. 작은 분수 복구 노드 퍼즐` 후보를 정리했습니다.
+- `docs/creative/04-brainstorming-qna-2026-05-19.md`에 브레인스토밍 질문과 답변 원문 기록을 별도 저장했습니다.
 
 ## 다음 단계
 
 1. `docs/creative/02-concept-candidates.md`의 `C-01. 작은 분수 복구 노드 퍼즐`을 검토합니다.
 2. concept brief로 압축할지, creative 후보를 더 넓힐지 결정합니다.
-3. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
-4. gameplay 구현 기준으로 승격하려면 `docs/design/core-beliefs.md` 인터뷰와 승인 절차를 먼저 진행합니다.
+3. 필요하면 `docs/creative/04-brainstorming-qna-2026-05-19.md`의 원문 기록을 근거로 concept 후보 또는 concept brief를 보정합니다.
+4. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
+5. gameplay 구현 기준으로 승격하려면 `docs/design/core-beliefs.md` 인터뷰와 승인 절차를 먼저 진행합니다.
 
 ## 아직 하지 않음
 
