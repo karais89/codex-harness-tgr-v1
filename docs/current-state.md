@@ -8,15 +8,15 @@ Tiny Garden Restore
 
 ## 현재 단계
 
-Creative 1차 후보 정리
+Creative 컨셉 단계 재정의 계획 검토
 
-이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용했습니다. 현재는 Tiny Garden Restore의 첫 playable 방향을 creative 후보로 압축한 상태입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
+이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용했습니다. 다만 현재 creative 브레인스토밍 산출물이 사용자가 원한 가벼운 컨셉 탐색보다 세부 gameplay design 사양에 가깝게 수렴한 문제가 확인되었습니다. 현재는 creative 단계를 다시 정의하고 기존 creative 산출물 상태를 정리하기 위한 ExecPlan을 검토 중입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
 
 ## 활성 계획
 
-`exec-plans/001-creative-art-workflow.md`
+`exec-plans/002-creative-concept-reset.md`
 
-이 계획은 creative, art, design, ExecPlan, implementation이 반복적으로 오갈 수 있는 문서 흐름과 엄격 모드 라우팅 규칙을 도입한 계획입니다. 현재 상태는 `완료`입니다.
+이 계획은 creative/art/design 분리 원칙은 유지하되, creative 브레인스토밍이 세부 design 사양으로 너무 빨리 굳지 않도록 creative 단계를 가벼운 컨셉 탐색 중심으로 재정의하는 계획입니다. 현재 상태는 `구현 승인 대기`입니다.
 
 ## 완료됨
 
@@ -34,14 +34,17 @@ Creative 1차 후보 정리
 - `docs/creative/01-brainstorming.md`에 작은 분수 복구 노드 퍼즐 아이디어를 1차 기록했습니다.
 - `docs/creative/02-concept-candidates.md`에 `C-01. 작은 분수 복구 노드 퍼즐` 후보를 정리했습니다.
 - `docs/creative/04-brainstorming-qna-2026-05-19.md`에 브레인스토밍 질문과 답변 원문 기록을 별도 저장했습니다.
+- 현재 creative 산출물이 가벼운 컨셉 탐색보다 세부 gameplay design 사양에 가깝다는 문제를 확인했습니다.
+- `exec-plans/002-creative-concept-reset.md`를 작성하고 구현 승인 대기 상태로 두었습니다.
 
 ## 다음 단계
 
-1. `docs/creative/02-concept-candidates.md`의 `C-01. 작은 분수 복구 노드 퍼즐`을 검토합니다.
-2. concept brief로 압축할지, creative 후보를 더 넓힐지 결정합니다.
-3. 필요하면 `docs/creative/04-brainstorming-qna-2026-05-19.md`의 원문 기록을 근거로 concept 후보 또는 concept brief를 보정합니다.
-4. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
-5. gameplay 구현 기준으로 승격하려면 `docs/design/core-beliefs.md` 인터뷰와 승인 절차를 먼저 진행합니다.
+1. `exec-plans/002-creative-concept-reset.md`를 검토합니다.
+2. 구현 승인 여부를 확인합니다.
+3. 승인되면 `docs/creative/README.md`를 가벼운 컨셉 탐색 중심으로 갱신합니다.
+4. 승인되면 현재 `작은 분수 복구 노드 퍼즐` creative 산출물을 폐기 또는 보류 상태로 정리합니다.
+5. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
+6. gameplay 구현 기준으로 승격하려면 `docs/design/core-beliefs.md` 인터뷰와 승인 절차를 먼저 진행합니다.
 
 ## 아직 하지 않음
 
