@@ -8,15 +8,15 @@ Tiny Garden Restore
 
 ## 현재 단계
 
-Bootstrap & Harness Reuse Check
+Creative/Art Workflow Setup
 
-이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, bootstrap 검증을 완료한 상태입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
+이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용하는 단계입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
 
 ## 활성 계획
 
-`exec-plans/000-bootstrap.md`
+`exec-plans/001-creative-art-workflow.md`
 
-이 계획은 Unity 프로젝트 존재, GitHub remote, 최소 문서 하네스, design placeholder, worktree 상태, bootstrap 범위 제한을 검증했고 완료 상태입니다.
+이 계획은 creative, art, design, ExecPlan, implementation이 반복적으로 오갈 수 있는 문서 흐름과 엄격 모드 라우팅 규칙을 도입한 계획입니다. 현재 상태는 `완료`입니다.
 
 ## 완료됨
 
@@ -27,12 +27,16 @@ Bootstrap & Harness Reuse Check
 - 최소 Codex 하네스 문서를 초기화했습니다.
 - 사용자가 Unity Editor에서 프로젝트가 열리는 것을 수동으로 확인했습니다.
 - `exec-plans/000-bootstrap.md`의 bootstrap 검증을 완료 상태로 갱신했습니다.
+- `exec-plans/001-creative-art-workflow.md`의 구현 승인을 받았습니다.
+- `docs/creative/`와 `docs/art/`의 기본 문서 구조를 추가했습니다.
+- creative/art/design/ExecPlan 영향이 애매하면 질문하는 엄격 모드 라우팅 규칙을 추가했습니다.
+- `exec-plans/001-creative-art-workflow.md`의 검증과 회고를 완료했습니다.
 
 ## 다음 단계
 
-1. 커밋 범위를 정합니다.
-2. bootstrap 변경을 커밋합니다.
-3. `docs/design/core-beliefs.md` 작성을 위한 사용자 인터뷰를 시작합니다.
+1. `docs/creative/README.md`를 읽고 creative 브레인스토밍을 시작합니다.
+2. `docs/creative/01-brainstorming.md`에 아이디어 발산을 기록합니다.
+3. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
 
 ## 아직 하지 않음
 
@@ -41,6 +45,8 @@ Bootstrap & Harness Reuse Check
 - gameplay ExecPlan 작성
 - Unity 씬 변경
 - C# gameplay 코드 추가
+- 실제 이미지 생성
+- 생성 이미지를 Unity 에셋으로 사용하는 작업
 - Unity MCP
 - custom skill
 - hook
