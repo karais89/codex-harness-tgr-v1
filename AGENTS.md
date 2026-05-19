@@ -67,7 +67,7 @@ Codex는 사용자 요청을 먼저 분류합니다.
 
 분류나 영향 범위가 애매하면 Codex는 파일을 수정하지 않고 사용자에게 먼저 질문합니다.
 
-creative, art, design, ExecPlan 작업은 단순 기록 요청이 아닌 한 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Protocol`을 따른다. Codex는 공유된 이해가 닫힐 때까지 decision tree를 하나씩 질문하고, 각 질문에는 현재 이해, 막힌 결정, 질문, 추천 답안을 포함한다.
+creative, art, design, ExecPlan 작업은 단순 기록 요청이 아닌 한 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Protocol`을 따른다. Codex는 공유된 이해가 닫힐 때까지 decision tree를 하나씩 질문하고, 각 질문에는 현재 이해, 막힌 결정, 추천 답안, 질문을 포함한다.
 
 예:
 

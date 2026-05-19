@@ -35,7 +35,6 @@ Grill-Me Discovery Protocol Setup
 - `docs/workflows/grill-me.md`를 공통 discovery protocol 문서로 추가했습니다.
 - `AGENTS.md`, `PLANS.md`, `docs/creative/README.md`, `docs/art/README.md`, `docs/design/README.md`가 공통 protocol을 참조하도록 연결했습니다.
 - `exec-plans/002-grill-me-discovery-protocol.md`의 검증과 회고를 완료했습니다.
-- Grill-Me 질문 형식을 원문 기준에 가깝게 `현재 이해 → 막힌 결정 → 질문 → 추천 답안` 순서로 보정하고, 원문 기준과 로컬 확장 범위를 구분했습니다.
 
 ## 다음 단계
 
