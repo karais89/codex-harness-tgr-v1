@@ -10,17 +10,18 @@
 
 ## 진행 상황
 
-- 상태: 구현 승인 대기
+- 상태: 완료
 - [x] 현재 creative 산출물이 원하는 컨셉 브레인스토밍보다 세부 design 사양에 가깝다는 문제를 사용자와 논의했다.
 - [x] 공유된 이해 검증을 완료했다.
 - [x] ExecPlan 생성 승인을 받았다.
-- [ ] 구현 승인을 받는다.
-- [ ] `docs/creative/README.md`를 가벼운 컨셉 탐색 중심으로 갱신한다.
-- [ ] 현재 `작은 분수 복구 노드 퍼즐` creative 산출물을 폐기 또는 보류 상태로 정리한다.
-- [ ] `docs/decisions.md`에 creative와 design 경계에 대한 장기 결정을 기록한다.
-- [ ] `docs/current-state.md`를 최종 상태에 맞게 갱신한다.
-- [ ] 검증을 완료한다.
-- [ ] 회고를 작성한다.
+- [x] 구현 승인을 받는다.
+- [x] `docs/creative/README.md`를 가벼운 컨셉 탐색 중심으로 갱신한다.
+- [x] `AGENTS.md`의 creative 라우팅 설명을 새 기준에 맞게 보정한다.
+- [x] 현재 `작은 분수 복구 노드 퍼즐` creative 산출물을 폐기 또는 보류 상태로 정리한다.
+- [x] `docs/decisions.md`에 creative와 design 경계에 대한 장기 결정을 기록한다.
+- [x] `docs/current-state.md`를 최종 상태에 맞게 갱신한다.
+- [x] 검증을 완료한다.
+- [x] 회고를 작성한다.
 
 ## 맥락
 
@@ -61,24 +62,28 @@ Project name: `Tiny Garden Restore`
    - creative에서 확정하지 않을 항목을 명시한다: 수치, 성공/실패 조건, UI 조작, 상태명, 노드 수, 맵 구조, 밸런스, 구현 방식.
    - creative 결과가 design으로 넘어가려면 별도 design 절차가 필요하다고 다시 강조한다.
 
-2. 현재 creative 산출물을 정리한다.
+2. `AGENTS.md`를 갱신한다.
+   - 엄격 모드 라우팅의 `creative` 설명을 가벼운 컨셉 탐색 중심으로 보정한다.
+   - creative 단계에서 player-facing 규칙, 수치, 조작, 상태, 피드백, 화면 상태를 확정하지 않는다는 경계를 추가한다.
+
+3. 현재 creative 산출물을 정리한다.
    - `docs/creative/01-brainstorming.md`의 `작은 분수 복구 노드 퍼즐` 기록을 확정 후보처럼 보이지 않게 정리한다.
    - 사용자가 원한 컨셉 탐색과 맞지 않았다는 이유를 기록한다.
    - 추천 표현은 `폐기`다. 이유는 이 산출물이 이후 세션에서 다시 구현 사양처럼 오해될 위험이 크기 때문이다.
    - 필요하면 `docs/creative/02-concept-candidates.md`의 `C-01`도 같은 상태로 맞춘다.
    - `docs/creative/04-brainstorming-qna-2026-05-19.md`는 원문 기록으로 보존하되, "폐기된 방향의 근거 기록"임을 앞부분에 표시한다.
 
-3. `docs/decisions.md`를 갱신한다.
+4. `docs/decisions.md`를 갱신한다.
    - creative는 design spec 작성 전의 컨셉 탐색 단계로 유지한다는 장기 결정을 기록한다.
    - 행동 횟수, 상태명, 조작 방식, 성공/실패 조건, UI 피드백, 맵 구조는 creative에서 확정하지 않고 design 절차로 넘긴다는 결정을 기록한다.
 
-4. `docs/current-state.md`를 갱신한다.
+5. `docs/current-state.md`를 갱신한다.
    - 현재 단계가 creative 후보 정리가 아니라 creative workflow 보정 또는 creative reset 진행 중임을 반영한다.
    - 활성 계획을 `exec-plans/002-creative-concept-reset.md`로 갱신한다.
    - 다음 단계는 구현 승인 후 creative 문서 규칙과 기존 산출물 상태를 정리하는 것이라고 쓴다.
    - gameplay design과 구현은 아직 시작하지 않았다고 유지한다.
 
-5. 검증 결과와 회고를 이 ExecPlan에 기록한다.
+6. 검증 결과와 회고를 이 ExecPlan에 기록한다.
 
 ## 검증
 
@@ -89,9 +94,10 @@ test -f docs/creative/README.md
 test -f docs/creative/01-brainstorming.md
 test -f docs/creative/02-concept-candidates.md
 test -f docs/creative/04-brainstorming-qna-2026-05-19.md
+test -f AGENTS.md
 test -f docs/current-state.md
 test -f docs/decisions.md
-rg -n "가벼운 컨셉|확정하지|design|폐기|작은 분수 복구 노드 퍼즐" docs/creative docs/current-state.md docs/decisions.md exec-plans/002-creative-concept-reset.md
+rg -n "가벼운 컨셉|확정하지|design|폐기|작은 분수 복구 노드 퍼즐" AGENTS.md docs/creative docs/current-state.md docs/decisions.md exec-plans/002-creative-concept-reset.md
 git diff --check
 git status --short
 ```
@@ -112,6 +118,15 @@ git status --short
 - 검증 절차와 결과가 이 ExecPlan에 기록되어 있다.
 - commit 후 `git status`가 clean이다.
 
+현재 검증 결과:
+
+- 날짜: 2026-05-19
+- `Test-Path`로 `docs/creative/README.md`, `docs/creative/01-brainstorming.md`, `docs/creative/02-concept-candidates.md`, `docs/creative/04-brainstorming-qna-2026-05-19.md`, `AGENTS.md`, `docs/current-state.md`, `docs/decisions.md` 존재를 확인했다.
+- `rg -n "가벼운 컨셉|확정하지|design|폐기|작은 분수 복구 노드 퍼즐" AGENTS.md docs/creative docs/current-state.md docs/decisions.md exec-plans/002-creative-concept-reset.md`로 creative/design 경계, 폐기 표시, 상태 갱신 문구가 존재함을 확인했다.
+- `git diff --check`는 종료 코드 0으로 통과했다. 출력에는 Git의 LF to CRLF 변환 경고만 있었다.
+- `git diff --name-only`로 변경 파일이 `AGENTS.md`, `docs/creative/*`, `docs/current-state.md`, `docs/decisions.md`, `exec-plans/002-creative-concept-reset.md` 범위임을 확인했다.
+- Unity 씬, C# 코드, 실제 이미지 파일은 변경하지 않았다.
+
 ## 결정 기록
 
 - 결정:
@@ -128,11 +143,40 @@ git status --short
 - 날짜:
   2026-05-19
 
+- 결정:
+  `AGENTS.md`도 이번 계획의 갱신 대상에 포함한다.
+- 근거:
+  `docs/creative/README.md`만 바꾸면 실제 Codex 작업 지침에는 이전 creative 정의가 남는다. creative와 design 경계는 장기 작업 규칙이므로 `AGENTS.md`에도 반영해야 한다.
+- 날짜:
+  2026-05-19
+
 ## 예상 밖 발견
 
-- 없음.
+- 구현 중 `AGENTS.md`에도 이전 creative 정의가 남는다는 점을 확인했다. 새 creative 기준이 실제 작업 지침에 반영되도록 계획 범위에 `AGENTS.md` 갱신을 추가했다.
 
 ## 회고
 
-아직 구현 승인 전이다.
+완료한 것:
 
+- creative 단계를 가벼운 컨셉 탐색 중심으로 다시 정의했다.
+- `AGENTS.md`와 `docs/creative/README.md`에 creative 단계에서 수치, 조작, 상태명, 성공/실패 조건 같은 gameplay 세부 사양을 확정하지 않는다는 경계를 기록했다.
+- `작은 분수 복구 노드 퍼즐` 산출물을 폐기된 creative 방향의 기록으로 정리했다.
+- `docs/decisions.md`와 `docs/current-state.md`를 갱신했다.
+
+완료하지 않은 것:
+
+- 새 creative 후보를 만들지 않았다.
+- gameplay design 문서를 작성하거나 승인하지 않았다.
+- Unity 씬, C# 코드, 실제 이미지 파일은 변경하지 않았다.
+
+배운 것:
+
+- creative/art/design 분리만으로는 충분하지 않고, creative 질문이 세부 gameplay design으로 빨려 들어가지 않도록 금지 항목을 명시해야 한다.
+
+다음에 해야 할 것:
+
+- 다음 creative 브레인스토밍은 정서, 감각, 소재, 재미 후보, 피하고 싶은 방향을 먼저 다루는 방식으로 다시 시작한다.
+
+다음 계획을 시작할 준비:
+
+- 준비됨.

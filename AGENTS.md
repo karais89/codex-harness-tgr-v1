@@ -14,7 +14,7 @@
 2. `AGENTS.md`
 3. `docs/current-state.md`가 있으면 읽습니다.
 4. `docs/decisions.md`가 있으면 읽습니다.
-5. 기획, 아이디어 발산, 후보 압축, concept brief 작업이면 `docs/creative/README.md`를 읽습니다.
+5. 기획, 가벼운 컨셉 탐색, 아이디어 발산, 후보 정리, concept brief 작업이면 `docs/creative/README.md`를 읽습니다.
 6. 아트 방향, 이미지 프롬프트, 생성 이미지 기록 작업이면 `docs/art/README.md`를 읽습니다.
 7. 작업에 ExecPlan이 필요하면 `PLANS.md`를 읽습니다.
 8. `exec-plans/` 아래의 관련 ExecPlan이 있으면 읽습니다.
@@ -58,7 +58,7 @@ Codex는 사용자 요청을 먼저 분류합니다.
 
 모든 요청은 먼저 다음 중 하나 이상으로 분류합니다.
 
-- `creative`: 아이디어 발산, 후보 압축, 기획 초안, concept brief 작업입니다.
+- `creative`: 정서, 감각, 소재, 재미 후보, 피하고 싶은 방향을 다루는 가벼운 컨셉 탐색 작업입니다.
 - `art`: 아트 방향, 이미지 프롬프트, 생성 이미지 기록, 이미지 후보 검토 작업입니다.
 - `design`: 플레이어 경험, 게임 규칙, 목표, 조작, 피드백, 화면 상태처럼 구현 기준이 되는 player-facing 사양 작업입니다.
 - `ExecPlan`: 승인된 기준을 어떤 순서로 구현하고 검증할지 정하는 실행 계획 작업입니다.
@@ -74,6 +74,8 @@ Codex는 사용자 요청을 먼저 분류합니다.
 ```
 
 명확한 기록 요청, 명확한 승인 요청, 명확한 구현 승인 이후의 작업은 진행할 수 있습니다. 다만 creative/art 결과가 player-facing 규칙, 목표, 조작, 피드백, 화면 상태, 구현 기준을 바꾸면 `docs/design` 갱신 절차로 넘어갑니다.
+
+Creative 단계에서는 행동 횟수, 자원량, 성공/실패 조건, UI 조작, 상태명, 맵 구조, 레벨 구조, 구체 피드백을 확정하지 않습니다. 이런 항목은 player-facing gameplay 기준이므로 필요하면 `docs/design`으로 넘깁니다.
 
 `docs/creative`와 `docs/art`의 산출물은 작업 기록과 판단 근거입니다. 그 자체로 gameplay ExecPlan이나 Unity 구현 기준이 되지 않습니다. 구현 기준으로 쓰려면 승인된 `docs/design/*.md` 문서에 반영되어야 합니다.
 
