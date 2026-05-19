@@ -8,9 +8,9 @@ Tiny Garden Restore
 
 ## 현재 단계
 
-Creative/Art Workflow Setup
+Creative 1차 후보 정리
 
-이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용하는 단계입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
+이 저장소는 Unity 프로젝트와 최소 Codex 하네스를 준비했고, creative/art 워크플로우 문서 구조와 엄격 모드 라우팅 규칙을 적용했습니다. 현재는 Tiny Garden Restore의 첫 playable 방향을 creative 후보로 압축한 상태입니다. 아직 player-facing gameplay design은 승인되지 않았고, gameplay 구현도 시작하지 않았습니다.
 
 ## 활성 계획
 
@@ -31,12 +31,15 @@ Creative/Art Workflow Setup
 - `docs/creative/`와 `docs/art/`의 기본 문서 구조를 추가했습니다.
 - creative/art/design/ExecPlan 영향이 애매하면 질문하는 엄격 모드 라우팅 규칙을 추가했습니다.
 - `exec-plans/001-creative-art-workflow.md`의 검증과 회고를 완료했습니다.
+- `docs/creative/01-brainstorming.md`에 작은 분수 복구 노드 퍼즐 아이디어를 1차 기록했습니다.
+- `docs/creative/02-concept-candidates.md`에 `C-01. 작은 분수 복구 노드 퍼즐` 후보를 정리했습니다.
 
 ## 다음 단계
 
-1. `docs/creative/README.md`를 읽고 creative 브레인스토밍을 시작합니다.
-2. `docs/creative/01-brainstorming.md`에 아이디어 발산을 기록합니다.
+1. `docs/creative/02-concept-candidates.md`의 `C-01. 작은 분수 복구 노드 퍼즐`을 검토합니다.
+2. concept brief로 압축할지, creative 후보를 더 넓힐지 결정합니다.
 3. 아트 방향 논의가 시작되면 `docs/art/README.md`를 먼저 읽습니다.
+4. gameplay 구현 기준으로 승격하려면 `docs/design/core-beliefs.md` 인터뷰와 승인 절차를 먼저 진행합니다.
 
 ## 아직 하지 않음
 
