@@ -121,27 +121,3 @@ creative, art, design, ExecPlan 중 어디에 속하는지 애매한 요청은 C
 
 근거:
 이미지가 마음에 든다는 판단과 player-facing 화면 기준 또는 Unity asset 사용 승인은 다르다. 이 경계를 분리해야 이미지 생성 결과가 조용히 구현 기준으로 승격되는 문제를 줄일 수 있다.
-
-### `grill-me`를 공통 discovery protocol로 사용한다
-
-결정:
-creative, art, design, ExecPlan 작업에서 공통으로 사용할 인터뷰 프로토콜은 `docs/workflows/grill-me.md`에 둔다.
-
-근거:
-각 영역 문서에 인터뷰 규칙을 따로 복사하면 질문 방식, 승인 기준, 종료 조건이 쉽게 어긋난다. 공통 프로토콜을 두면 Codex가 아이디어, 아트, design, 실행 계획을 모두 공유된 이해에 도달할 때까지 같은 방식으로 캐물을 수 있다.
-
-### `grill-me`는 `mattpocock/skills` 기준으로 유지한다
-
-결정:
-공통 discovery protocol의 기준은 `mattpocock/skills`의 `grill-me`로 삼는다. `deep-interview`는 이번 프로토콜의 기준으로 채택하지 않는다.
-
-근거:
-이 프로젝트의 목적은 빠른 요구사항 정리가 아니라 pre-production 과정에서 암묵적 결정과 판단 기준을 충분히 캐내는 것이다. `deep-interview`식 절제된 요구사항 정리는 일반 작업에는 유용하지만, 이 하네스에서는 질문을 조기 종료할 위험이 있다.
-
-### Grill-Me는 먼저 workflow 문서로 검증한다
-
-결정:
-이번 단계에서는 custom skill을 추가하지 않고, `docs/workflows/grill-me.md`를 repo-local workflow protocol로 사용한다.
-
-근거:
-현재 저장소는 MCP, custom skill, hook, subagent를 보류한다는 결정을 유지하고 있다. 실제 creative/art/design/ExecPlan 흐름에서 반복 사용해 본 뒤 skill 승격 여부를 판단하는 편이 안전하다.

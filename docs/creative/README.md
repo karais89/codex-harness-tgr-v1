@@ -6,8 +6,6 @@
 
 이 폴더의 문서는 확정 구현 사양이 아니다. Creative 산출물은 이후 `docs/design` 문서의 재료가 될 수 있지만, 그 자체로 gameplay ExecPlan이나 Unity 구현 기준이 되지 않는다.
 
-Creative 작업은 단순 기록 요청이 아닌 한 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Protocol`로 시작한다. Codex는 아이디어 목록을 바로 쓰지 않고, 사용자의 암묵적 기획 기준과 선택 기준을 먼저 질문으로 캐낸다.
-
 ## 먼저 읽기
 
 Codex는 다음 작업을 시작하기 전에 이 문서를 읽는다.
@@ -18,8 +16,6 @@ Codex는 다음 작업을 시작하기 전에 이 문서를 읽는다.
 - concept brief 작성 또는 갱신
 - creative 결과를 design 기준으로 넘길지 판단하는 작업
 
-이 문서와 함께 `docs/workflows/grill-me.md`를 읽는다.
-
 ## 문서 흐름
 
 Creative 작업은 기본적으로 다음 단계별 문서에 기록한다.
@@ -29,20 +25,6 @@ Creative 작업은 기본적으로 다음 단계별 문서에 기록한다.
 3. `03-concept-brief.md`: 현재 채택한 기획 초안
 
 각 문서는 `상태: 작성 전`으로 시작할 수 있다. 이 상태의 문서는 아직 실제 기획 산출물이 아니라 placeholder다.
-
-## Grill-Me Discovery
-
-Codex는 creative 작업에서 다음 decision branch가 닫히기 전에는 후보 압축이나 concept brief 작성으로 넘어가지 않는다.
-
-- 이 게임 또는 실험의 정체성
-- 플레이어가 느껴야 하는 감정과 리듬
-- 초기 단계에서 하지 않을 것
-- 브레인스토밍을 넓힐 기준
-- 후보를 선택, 보류, 폐기할 기준
-- concept brief로 넘길 수 있는 최소 합의
-- design 문서로 넘기면 안 되는 미확정 아이디어
-
-질문은 한 번에 하나만 한다. 각 질문에는 현재 이해, 막힌 결정, 추천 답안, 질문을 포함한다.
 
 ## 엄격 모드
 

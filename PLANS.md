@@ -91,8 +91,6 @@ Gameplay ExecPlan에는 다음 섹션을 포함합니다.
 
 사소하지 않은 작업은 ExecPlan 작성 전에 사용자 의도와 작업 범위를 확인합니다.
 
-ExecPlan 전 인터뷰는 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Protocol`을 기준으로 합니다. 이 인터뷰는 질문을 줄여 빠르게 끝내는 절차가 아니라, 구현 순서와 검증 방법에 영향을 주는 decision tree가 닫힐 때까지 공유된 이해를 만드는 절차입니다.
-
 기본 흐름은 다음과 같습니다.
 
 1. 논의
@@ -106,7 +104,7 @@ ExecPlan 전 인터뷰는 `docs/workflows/grill-me.md`의 `Grill-Me Discovery Pr
 9. 구현
 10. 검증과 문서 갱신
 
-인터뷰는 한 번에 하나의 중요한 결정 분기만 묻습니다. 각 질문에는 현재 이해, 막힌 결정, Codex의 추천 답안, 질문을 포함합니다. 코드나 문서에서 확인할 수 있는 사실은 사용자에게 묻지 않고 직접 확인합니다.
+인터뷰는 한 번에 하나의 중요한 결정 분기만 묻습니다. 각 질문에는 Codex의 추천 답안을 포함합니다. 코드나 문서에서 확인할 수 있는 사실은 사용자에게 묻지 않고 직접 확인합니다.
 
 공유된 이해 검증에서는 다음을 요약합니다.
 
@@ -166,8 +164,7 @@ ExecPlan을 작성하거나 수정하기 전에 다음을 읽습니다.
 3. `PLANS.md`
 4. `docs/current-state.md`가 있으면 읽기
 5. `docs/decisions.md`가 있으면 읽기
-6. `docs/workflows/grill-me.md`가 있으면 읽기
-7. 관련 ExecPlan이 있으면 읽기
+6. 관련 ExecPlan이 있으면 읽기
 
 ## 필수 섹션
 
