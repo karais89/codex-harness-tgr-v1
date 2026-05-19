@@ -10,7 +10,7 @@
 
 ## 진행 상황
 
-- 상태: 구현 승인 대기
+- 상태: 완료
 - [x] 현재 `creative`와 `art` 분류가 원래 의도보다 무겁다는 문제를 사용자와 논의했다.
 - [x] 첫 단계는 "한 게임의 구체화"가 아니라 "여러 게임 아이디어를 자유롭게 뽑고 고르는 보드"라는 합의를 확인했다.
 - [x] creative 단계에서 조작, 규칙, 성공/실패, 화면 아이디어도 러프한 후보 메모로 허용한다는 합의를 확인했다.
@@ -18,15 +18,15 @@
 - [x] art는 creative 카드 안에 "아트/분위기 상상"을 가볍게 적고, 후보 선택 후 별도 art 문서로 확장한다는 합의를 확인했다.
 - [x] 공유된 이해 검증을 완료했다.
 - [x] ExecPlan 생성 승인을 받았다.
-- [ ] 구현 승인을 받는다.
-- [ ] `docs/creative/README.md`를 아이디어 보드 중심으로 갱신한다.
-- [ ] `AGENTS.md`의 creative/art 라우팅 규칙을 새 흐름에 맞게 보정한다.
-- [ ] `docs/art/README.md`를 선택 후보의 시각 확장 단계 중심으로 보정한다.
-- [ ] 기존 `docs/creative` 문서를 보드형 흐름과 충돌하지 않게 정리한다.
-- [ ] `docs/decisions.md`에 creative 아이디어 보드와 art 확장 흐름 결정을 기록한다.
-- [ ] `docs/current-state.md`를 최종 상태에 맞게 갱신한다.
-- [ ] 검증을 완료한다.
-- [ ] 회고를 작성한다.
+- [x] 구현 승인을 받는다.
+- [x] `docs/creative/README.md`를 아이디어 보드 중심으로 갱신한다.
+- [x] `AGENTS.md`의 creative/art 라우팅 규칙을 새 흐름에 맞게 보정한다.
+- [x] `docs/art/README.md`를 선택 후보의 시각 확장 단계 중심으로 보정한다.
+- [x] 기존 `docs/creative` 문서를 보드형 흐름과 충돌하지 않게 정리한다.
+- [x] `docs/decisions.md`에 creative 아이디어 보드와 art 확장 흐름 결정을 기록한다.
+- [x] `docs/current-state.md`를 최종 상태에 맞게 갱신한다.
+- [x] 검증을 완료한다.
+- [x] 회고를 작성한다.
 
 ## 맥락
 
@@ -127,7 +127,13 @@ git status --short
 
 현재 검증 결과:
 
-- 작성 전.
+- 날짜: 2026-05-19
+- `Test-Path`로 `docs/creative/README.md`, `docs/art/README.md`, `AGENTS.md`, `docs/current-state.md`, `docs/decisions.md`, `exec-plans/003-creative-idea-board-workflow.md` 존재를 확인했다.
+- `rg -n "아이디어 보드|후보 메모|확정 사양|아트/분위기|점수표|우선순위|design" AGENTS.md docs/creative docs/art docs/current-state.md docs/decisions.md exec-plans/003-creative-idea-board-workflow.md`로 새 흐름의 핵심 문구가 문서에 반영되어 있음을 확인했다.
+- `git diff --check`는 종료 코드 0으로 통과했다. 출력에는 Git의 LF to CRLF 변환 경고만 있었다.
+- `git diff --name-only`로 변경 파일이 `AGENTS.md`, `docs/art/README.md`, `docs/creative/*`, `docs/current-state.md`, `docs/decisions.md`, `exec-plans/003-creative-idea-board-workflow.md` 범위임을 확인했다.
+- `Select-String -Path docs/design/core-beliefs.md -Pattern "상태:"`로 `docs/design/core-beliefs.md`가 여전히 `상태: 작성 전`임을 확인했다.
+- Unity 씬, C# 코드, 실제 이미지 파일은 변경하지 않았다.
 
 ## 결정 기록
 
@@ -161,8 +167,32 @@ git status --short
 
 ## 예상 밖 발견
 
-- 작성 전.
+- PowerShell 환경이라 검증 명령의 `test -f`는 `Test-Path`로 대체했다.
 
 ## 회고
 
-작성 전.
+완료한 것:
+
+- `creative`를 여러 게임 아이디어를 카드처럼 쌓는 아이디어 보드로 재정의했다.
+- creative 단계에서 조작, 규칙, 성공/실패, 화면 아이디어도 후보 메모로 허용하도록 문서화했다.
+- `art`를 선택했거나 흥미로운 후보의 시각 상상을 확장하는 단계로 재정의했다.
+- 기존 `작은 분수 복구 노드 퍼즐` 기록을 현재 활성 후보가 아닌 폐기 기록으로 보존했다.
+- `AGENTS.md`, `docs/creative/README.md`, `docs/art/README.md`, `docs/decisions.md`, `docs/current-state.md`를 새 흐름에 맞게 갱신했다.
+
+완료하지 않은 것:
+
+- 새 게임 아이디어 후보를 만들지 않았다.
+- gameplay design 문서를 작성하거나 승인하지 않았다.
+- Unity 씬, C# 코드, 실제 이미지 파일은 변경하지 않았다.
+
+배운 것:
+
+- 문제는 gameplay 요소를 creative에서 말하는 것이 아니라, 후보 메모를 확정 사양처럼 다루는 데 있었다.
+
+다음에 해야 할 것:
+
+- 다음 creative 브레인스토밍은 `docs/creative/01-brainstorming.md`의 보드에 여러 후보 카드를 쌓는 방식으로 시작한다.
+
+다음 계획을 시작할 준비:
+
+- 준비됨.
