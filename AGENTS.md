@@ -62,12 +62,14 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## 5. Language
 
-Write newly created project documents and work reports in Korean.
-Exception: standard agent template documents, such as `.agent/PLANS.md`, may remain in English when preserving the original template wording is useful.
+- Write newly created project documents and work reports in Korean.
+- Generated ExecPlan documents are project documents and must be written in Korean.
+- Exception: standard agent template documents, such as `.agent/PLANS.md`, may remain in English when preserving the original template wording is useful.
 
 ## 6. ExecPlans
 
-When writing complex features or significant refactors, use an ExecPlan (as described in .agent/PLANS.md) from design to implementation.
+- When writing complex features or significant refactors, use an ExecPlan (as described in `.agent/PLANS.md`) from design to implementation.
+- To preserve compatibility with `.agent/PLANS.md`, use Korean headings followed by the canonical English section name in parentheses for required sections, for example `## 진행 상황 (Progress)`.
 
 ---
 
