@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Garden Restore - 5분 프로젝트 브리핑</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f4ed;
+      --ink: #20221f;
+      --muted: #5f645d;
+      --line: #d8d0c2;
+      --leaf: #1f7a4d;
+      --leaf-soft: #dcecdf;
+      --soil: #6f4f37;
+      --sun: #e7a821;
+      --water: #246f9d;
+      --brick: #b34b3f;
+      --white: #fffdf8;
+      --shadow: 0 18px 38px rgba(54, 45, 33, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(31, 122, 77, 0.045) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(111, 79, 55, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      color: var(--ink);
+      font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      line-height: 1.62;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: 28px 22px;
+      background: #f0e7d6;
+      border-right: 1px solid var(--line);
+    }
+
+    .rail-title {
+      margin: 0 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      line-height: 1.15;
+    }
+
+    .rail-subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .source-link svg {
+      width: 18px;
+      height: 18px;
+      flex: none;
+      stroke: var(--leaf);
+    }
+
+    .quick-nav {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quick-nav a {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 9px;
+      align-items: center;
+      padding: 9px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .quick-nav a:hover,
+    .quick-nav a:focus-visible {
+      background: var(--white);
+      color: var(--ink);
+      outline: 2px solid transparent;
+    }
+
+    .quick-nav span {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 36px;
+      align-items: center;
+      padding: 58px 56px 38px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(255, 253, 248, 0.68)),
+        radial-gradient(circle at 90% 10%, rgba(231, 168, 33, 0.2), transparent 28%),
+        var(--paper);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--leaf);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: 4rem;
+    }
+
+    h2 {
+      font-size: 2.15rem;
+    }
+
+    h3 {
+      font-size: 1.24rem;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #3e433c;
+      font-size: 1.16rem;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      min-height: 116px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--leaf);
+      font-size: 1.58rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .garden-map {
+      position: relative;
+      min-height: 520px;
+      padding: 28px;
+      border: 1px solid #b8aa92;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.52) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,0.52) 1px, transparent 1px),
+        #d9e6c9;
+      background-size: 42px 42px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .garden-map::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 2px dashed rgba(111, 79, 55, 0.45);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .plot-label {
+      position: relative;
+      z-index: 1;
+      max-width: 260px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.9);
+      border: 1px solid rgba(111, 79, 55, 0.25);
+      font-weight: 800;
+    }
+
+    .plot-label small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .player-dot,
+    .target-dot,
+    .done-dot {
+      position: absolute;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(60, 46, 33, 0.22);
+    }
+
+    .player-dot {
+      right: 24%;
+      bottom: 28%;
+      width: 72px;
+      height: 72px;
+      background: var(--water);
+    }
+
+    .target-dot {
+      width: 64px;
+      height: 64px;
+      background: var(--brick);
+    }
+
+    .target-one {
+      left: 18%;
+      top: 35%;
+    }
+
+    .target-two {
+      right: 18%;
+      top: 24%;
+    }
+
+    .target-three {
+      left: 38%;
+      bottom: 15%;
+    }
+
+    .done-dot {
+      right: 10%;
+      bottom: 12%;
+      width: 88px;
+      height: 88px;
+      background: var(--leaf);
+    }
+
+    .path-line {
+      position: absolute;
+      z-index: 1;
+      left: 23%;
+      top: 43%;
+      width: 54%;
+      height: 42%;
+      border: 5px solid rgba(36, 111, 157, 0.24);
+      border-top: 0;
+      border-left: 0;
+      border-radius: 0 0 90px 0;
+      transform: rotate(-8deg);
+    }
+
+    .section {
+      padding: 56px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.7);
+    }
+
+    .section:nth-of-type(even) {
+      background: rgba(240, 231, 214, 0.64);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.55fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .time-box {
+      justify-self: end;
+      width: 100%;
+      max-width: 340px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--muted);
+    }
+
+    .time-box strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .answer-card,
+    .scope-card,
+    .test-card,
+    .prompt-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 24px rgba(54, 45, 33, 0.08);
+    }
+
+    .answer-card svg,
+    .scope-card svg,
+    .test-card svg {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 12px;
+      stroke-width: 1.8;
+    }
+
+    .answer-card p,
+    .scope-card p,
+    .test-card p,
+    .prompt-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .scope-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .scope-list {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #393d37;
+    }
+
+    .scope-list li::before {
+      content: "";
+      flex: none;
+      width: 10px;
+      height: 10px;
+      margin-top: 9px;
+      border-radius: 50%;
+      background: var(--leaf);
+    }
+
+    .scope-card.out .scope-list li::before {
+      background: var(--brick);
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .test-card {
+      min-height: 182px;
+    }
+
+    .test-card strong {
+      display: block;
+      color: var(--leaf);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .loop-step {
+      position: relative;
+      min-height: 132px;
+      padding: 18px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .loop-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -13px;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      border-top: 3px solid var(--soil);
+      border-right: 3px solid var(--soil);
+      transform: translateY(-50%) rotate(45deg);
+      background: var(--white);
+      z-index: 2;
+    }
+
+    .loop-step b {
+      display: block;
+      color: var(--soil);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.36rem;
+    }
+
+    .loop-step span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .milestones {
+      display: grid;
+      gap: 12px;
+    }
+
+    .milestone {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr) minmax(180px, 0.38fr);
+      gap: 18px;
+      align-items: center;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .milestone code {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .milestone p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .milestone .tag {
+      justify-self: start;
+      padding: 6px 9px;
+      border-radius: 8px;
+      background: var(--leaf-soft);
+      color: #244d35;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .criteria {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .criteria-block {
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .criteria-block ul {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .criteria-block li {
+      padding-left: 22px;
+      color: var(--muted);
+      border-left: 4px solid var(--leaf);
+    }
+
+    .criteria-block.risk li {
+      border-left-color: var(--brick);
+    }
+
+    .prompt-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .prompt-card pre {
+      overflow-x: auto;
+      margin: 14px 0 0;
+      padding: 16px;
+      border-radius: 8px;
+      background: #24231f;
+      color: #fff7df;
+      font-family: "D2Coding", Consolas, monospace;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .finish {
+      padding: 46px 56px 64px;
+      background: #1f2b23;
+      color: #fffdf8;
+    }
+
+    .finish h2 {
+      max-width: 860px;
+    }
+
+    .finish p {
+      max-width: 900px;
+      color: rgba(255, 253, 248, 0.78);
+      font-size: 1.04rem;
+    }
+
+    @media (max-width: 1180px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        height: auto;
+        padding: 18px 22px;
+      }
+
+      .quick-nav {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .section,
+      .finish {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .hero-points,
+      .answer-grid,
+      .scope-layout,
+      .test-grid,
+      .loop,
+      .criteria,
+      .prompt-layout,
+      .section-header {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .garden-map {
+        min-height: 420px;
+      }
+
+      .loop-step:not(:last-child)::after {
+        display: none;
+      }
+
+      .milestone {
+        grid-template-columns: 64px minmax(0, 1fr);
+      }
+
+      .milestone .tag {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="rail" aria-label="5분 읽기 순서">
+      <h1 class="rail-title">5분 프로젝트 브리핑</h1>
+      <p class="rail-subtitle">docs/project-goal.md를 빠르게 이해하기 위한 시각 요약</p>
+      <a class="source-link" href="./project-goal.md">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 3h7l5 5v13H7z"></path>
+          <path d="M14 3v5h5"></path>
+          <path d="M9 13h6M9 17h6"></path>
+        </svg>
+        원문 열기
+      </a>
+      <nav>
+        <ul class="quick-nav">
+          <li><a href="#why"><span>1</span>왜 하는가</a></li>
+          <li><a href="#scope"><span>2</span>게임 범위</a></li>
+          <li><a href="#harness"><span>3</span>검증 대상</a></li>
+          <li><a href="#loop"><span>4</span>플레이 루프</a></li>
+          <li><a href="#milestones"><span>5</span>마일스톤</a></li>
+          <li><a href="#decision"><span>6</span>판단 기준</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="hero" id="top">
+        <div>
+          <p class="eyebrow">codex-harness-tgr-v1</p>
+          <h1>Tiny Garden Restore는 게임 완성보다 하네스 검증이 먼저인 Unity 실험입니다.</h1>
+          <p class="lede">
+            목표는 작은 정원 복구 playable loop를 실제로 만들면서,
+            Codex가 얇은 지침과 짧은 프롬프트만으로 계획, 구현, Unity 검증까지
+            이어갈 수 있는지 확인하는 것입니다.
+          </p>
+          <div class="hero-points" aria-label="핵심 숫자">
+            <div class="metric"><strong>2D</strong><span>작은 정원 Scene 기반 Unity playable loop</span></div>
+            <div class="metric"><strong>5개</strong><span>1차 검증 대상: AGENTS, Plan mode, MCP, ExecPlan, 짧은 프롬프트</span></div>
+            <div class="metric"><strong>M0-M7</strong><span>문서 정리부터 하네스 평가와 선택 실험까지</span></div>
+          </div>
+        </div>
+
+        <div class="garden-map" aria-label="Tiny Garden Restore 플레이 흐름 그림">
+          <div class="plot-label">
+            Tiny Garden Restore
+            <small>작게 만들고, 실제로 검증하고, 하네스가 충분한지 판단한다.</small>
+          </div>
+          <div class="path-line" aria-hidden="true"></div>
+          <div class="target-dot target-one">1</div>
+          <div class="target-dot target-two">2</div>
+          <div class="target-dot target-three">3</div>
+          <div class="player-dot">P</div>
+          <div class="done-dot">완료</div>
+        </div>
+      </section>
+
+      <section class="section" id="why">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">0:00 - 1:00</p>
+            <h2>이 프로젝트의 한 문장</h2>
+          </div>
+          <p class="time-box"><strong>읽는 목표</strong>게임 자체보다 “최소 하네스가 Unity 작업에 충분한가”를 확인하는 실험이라는 점만 잡으면 됩니다.</p>
+        </div>
+
+        <div class="answer-grid">
+          <article class="answer-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--leaf)" aria-hidden="true">
+              <path d="M12 21c4-4 7-7 7-11a7 7 0 1 0-14 0c0 4 3 7 7 11z"></path>
+              <path d="M9 10h6M12 7v6"></path>
+            </svg>
+            <h3>무엇을 만드나</h3>
+            <p>방치된 작은 정원을 복구하는 아주 작은 Unity 2D playable loop를 만듭니다.</p>
+          </article>
+          <article class="answer-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--water)" aria-hidden="true">
+              <path d="M4 7h16M4 12h10M4 17h16"></path>
+              <path d="M17 10l3 2-3 2"></path>
+            </svg>
+            <h3>왜 만드나</h3>
+            <p>복잡한 워크플로우 없이 Codex가 계획, 구현, 검증을 이어갈 수 있는지 확인합니다.</p>
+          </article>
+          <article class="answer-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--soil)" aria-hidden="true">
+              <path d="M5 19h14"></path>
+              <path d="M7 19V8h10v11"></path>
+              <path d="M9 8V5h6v3"></path>
+            </svg>
+            <h3>무엇이 아닌가</h3>
+            <p>v0 하네스 확장판이나 상용 수준 게임 구조 검증 프로젝트가 아닙니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="scope">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">1:00 - 2:00</p>
+            <h2>게임 범위는 의도적으로 작습니다</h2>
+          </div>
+          <p class="time-box"><strong>핵심 감각</strong>작은 정원, 플레이어 이동, 복구 대상 상호작용, 완료 표시만 있으면 초기 목적에 충분합니다.</p>
+        </div>
+
+        <div class="scope-layout">
+          <article class="scope-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--leaf)" aria-hidden="true">
+              <path d="M5 12h14M12 5v14"></path>
+              <path d="M7 7l10 10M17 7 7 17"></path>
+            </svg>
+            <h3>초기 playable loop에 포함</h3>
+            <ul class="scope-list">
+              <li>작은 정원 Scene</li>
+              <li>Player 이동</li>
+              <li>복구 대상 배치</li>
+              <li>Player와 복구 대상의 상호작용</li>
+              <li>복구 상태 변화와 완료 표시</li>
+            </ul>
+          </article>
+
+          <article class="scope-card out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--brick)" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+            <h3>초기 단계에서 제외</h3>
+            <ul class="scope-list">
+              <li>복잡한 성장 시스템, 경제, 인벤토리</li>
+              <li>상점, 여러 스테이지, 세이브/로드</li>
+              <li>복잡한 UI와 고급 아트 파이프라인</li>
+              <li>상용 수준 구조와 긴 PRD/GDD workflow</li>
+              <li>여러 agent 협업과 대규모 자동화</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="harness">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">2:00 - 3:00</p>
+            <h2>1차 검증 대상은 하네스의 최소 구성입니다</h2>
+          </div>
+          <p class="time-box"><strong>평가 질문</strong>적게 갖추고도 실제 Unity 작업이 되는가를 봅니다.</p>
+        </div>
+
+        <div class="test-grid">
+          <article class="test-card">
+            <strong>Guideline</strong>
+            <h3>AGENTS.md</h3>
+            <p>저장소 기본 규칙만으로 Codex가 작업 방향을 이해하는지 확인합니다.</p>
+          </article>
+          <article class="test-card">
+            <strong>Planning</strong>
+            <h3>Plan mode</h3>
+            <p>기본 계획 흐름이 작은 Unity 작업에 충분한지 봅니다.</p>
+          </article>
+          <article class="test-card">
+            <strong>Editor</strong>
+            <h3>Unity MCP</h3>
+            <p>Scene, Console, Play Mode 확인까지 실제 검증에 연결되는지 확인합니다.</p>
+          </article>
+          <article class="test-card">
+            <strong>Reference</strong>
+            <h3>ExecPlan 원문</h3>
+            <p>기본 절차가 아니라 복잡한 작업 때만 참조해도 충분한지 봅니다.</p>
+          </article>
+          <article class="test-card">
+            <strong>Prompt</strong>
+            <h3>3줄 이하 지시</h3>
+            <p>짧은 작업 프롬프트로도 구현과 검증을 유도할 수 있는지 확인합니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="loop">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">3:00 - 3:40</p>
+            <h2>첫 playable loop는 다섯 단계입니다</h2>
+          </div>
+          <p class="time-box"><strong>게임의 최소 끝</strong>이동하고, 복구하고, 모든 대상이 끝나면 완료 메시지가 나오는 흐름입니다.</p>
+        </div>
+
+        <div class="loop" aria-label="플레이 루프">
+          <div class="loop-step"><b>1</b><span>작은 정원에서 Player가 시작합니다.</span></div>
+          <div class="loop-step"><b>2</b><span>키보드 입력으로 Player가 이동합니다.</span></div>
+          <div class="loop-step"><b>3</b><span>복구 대상 여러 개와 상호작용합니다.</span></div>
+          <div class="loop-step"><b>4</b><span>각 대상의 상태가 복구됨으로 바뀝니다.</span></div>
+          <div class="loop-step"><b>5</b><span>모든 필수 대상 처리 후 완료 메시지를 표시합니다.</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="milestones">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">3:40 - 4:30</p>
+            <h2>M0부터 M7까지 한 줄로 보기</h2>
+          </div>
+          <p class="time-box"><strong>진행 방향</strong>문서 정리에서 시작해 Unity 연결, Scene, 이동, 상호작용, loop 완성, 하네스 평가로 갑니다.</p>
+        </div>
+
+        <div class="milestones">
+          <article class="milestone"><code>M0</code><div><h3>기준 문서 정리</h3><p>README, AGENTS, project-goal, ExecPlan 참조 파일을 준비합니다.</p></div><span class="tag">기초</span></article>
+          <article class="milestone"><code>M1</code><div><h3>Unity MCP 연결 확인</h3><p>Editor 상태, Scene, Console, Play Mode 가능 여부를 확인합니다.</p></div><span class="tag">검증 연결</span></article>
+          <article class="milestone"><code>M2</code><div><h3>Tiny Garden 기본 Scene 구성</h3><p>정원 영역, Player, 카메라를 가장 단순하게 배치합니다.</p></div><span class="tag">공간</span></article>
+          <article class="milestone"><code>M3</code><div><h3>Player 이동 구현</h3><p>키보드 입력으로 작은 정원 안에서 움직일 수 있게 합니다.</p></div><span class="tag">조작</span></article>
+          <article class="milestone"><code>M4</code><div><h3>복구 대상 상호작용 구현</h3><p>대상과 충돌 또는 입력으로 상호작용하고 상태를 바꿉니다.</p></div><span class="tag">상호작용</span></article>
+          <article class="milestone"><code>M5</code><div><h3>첫 playable loop 완성</h3><p>복구 대상 3개 처리 후 완료 메시지까지 이어지게 합니다.</p></div><span class="tag">완성 루프</span></article>
+          <article class="milestone"><code>M6</code><div><h3>경량 하네스 평가</h3><p>AGENTS, Plan mode, ExecPlan, Unity MCP, 짧은 프롬프트를 평가합니다.</p></div><span class="tag">판단</span></article>
+          <article class="milestone"><code>M7</code><div><h3>선택 실험: Skill / Hooks</h3><p>필요성이 확인된 경우에만 작은 보조 실험으로 진행합니다.</p></div><span class="tag">선택</span></article>
+        </div>
+      </section>
+
+      <section class="section" id="decision">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">4:30 - 5:00</p>
+            <h2>마지막에 답해야 하는 질문</h2>
+          </div>
+          <p class="time-box"><strong>성공 조건</strong>M6까지 끝났을 때 다음 프로젝트에 가져갈 하네스 구성을 판단할 수 있어야 합니다.</p>
+        </div>
+
+        <div class="criteria">
+          <article class="criteria-block">
+            <h3>성공으로 보는 신호</h3>
+            <ul>
+              <li>작은 playable loop가 Unity Play Mode에서 끝까지 동작합니다.</li>
+              <li>Codex가 짧은 프롬프트로 계획, 구현, 검증 결과 보고를 이어갑니다.</li>
+              <li>Unity MCP가 Scene, Console, Play Mode 확인에 실제로 도움이 됩니다.</li>
+              <li>ExecPlan 없이도 작은 작업을 진행할 수 있는지 판단할 수 있습니다.</li>
+            </ul>
+          </article>
+          <article class="criteria-block risk">
+            <h3>실패 또는 보강 신호</h3>
+            <ul>
+              <li>작은 작업도 계속 멈추거나 하네스 설정이 작업보다 커집니다.</li>
+              <li>Unity에서 확인 가능한 결과물이 나오지 않습니다.</li>
+              <li>Codex가 요청하지 않은 구조나 기능을 과도하게 추가합니다.</li>
+              <li>다음 작업으로 이어가기 어려울 정도로 맥락이 사라집니다.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">작업 방식</p>
+            <h2>프롬프트는 짧고 검증은 명확하게</h2>
+          </div>
+          <p class="time-box"><strong>운영 원칙</strong>한 번에 하나의 목표, 구현 전 plan, 작업 후 변경 파일과 Unity 검증 결과 보고.</p>
+        </div>
+
+        <div class="prompt-layout">
+          <article class="prompt-card">
+            <h3>좋은 프롬프트 조건</h3>
+            <p>3줄 이하, 목표 하나, 구현 전 계획 요청, 검증 결과 보고 요청, 불필요한 구조화 금지.</p>
+          </article>
+          <article class="prompt-card">
+            <h3>기본 형식</h3>
+            <pre>[작업 목표]를 해줘.
+가장 단순한 방식으로 구현하고, 변경 전 plan을 먼저 제시해줘.
+작업 후 변경 파일과 Unity 검증 결과를 보고해줘.</pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="finish">
+        <h2>5분 요약: 이 저장소는 “작은 게임을 만들며 최소 Codex 하네스를 검증하는 실험장”입니다.</h2>
+        <p>
+          Tiny Garden Restore의 복잡도를 낮게 유지해야 하네스의 실제 효용이 보입니다.
+          M5까지는 playable loop를 작게 완성하고, M6에서 AGENTS.md, Plan mode, Unity MCP,
+          ExecPlan 참조, 짧은 프롬프트가 각각 유지할 가치가 있는지 판단합니다.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
