@@ -114,6 +114,7 @@ Memory는 이번 프로젝트의 명시적 실험 대상에서 제외합니다.
 ```text
 M0. 기준 문서 정리
 M1. Unity MCP 연결 확인
+M1.5. Tiny Garden 기획/아트 기준 정리
 M2. Tiny Garden 기본 Scene 구성
 M3. Player 이동 구현
 M4. 복구 대상 상호작용 구현
@@ -121,6 +122,9 @@ M5. 첫 playable loop 완성
 M6. 경량 하네스 평가
 M7. 선택 실험: Skill / Hooks 검토
 ```
+
+M1.5는 M2 착수 전 필수 게이트입니다.  
+Unity Scene을 만들기 전에 Tiny Garden Restore의 최소 기획, 아트 방향, 이미지 생성 기준을 문서로 고정한 뒤 M2 Scene 구성을 진행합니다.
 
 ---
 
@@ -192,11 +196,49 @@ CoderGamester MCP 기준으로 Console log, packages/assets, 현재 Scene, Play 
 
 ---
 
+# M1.5. Tiny Garden 기획/아트 기준 정리
+
+## 목표
+
+Tiny Garden Restore의 첫 Scene을 만들기 전에 M2~M5 구현 판단의 기준이 되는 최소 기획, 아트 방향, 이미지 생성 기준을 정리합니다.
+
+이 단계는 무거운 GDD나 ExecPlan이 아니라, 구현 중 기준이 흔들리지 않게 만드는 경량 사양 단계입니다.
+
+## 완료 기준
+
+- `docs/creative/tiny-garden-creative-spec.md`가 존재합니다.
+- `docs/art/tiny-garden-art-concept.md`가 존재합니다.
+- `docs/art/tiny-garden-image-prompts.md`가 존재합니다.
+- `docs/art/images/tiny-garden-concept-board-01.png`가 존재합니다.
+- 질문/답변 기반으로 확정한 결정 기록이 문서에 남아 있습니다.
+- M2에서 Scene을 만들 때 참조할 플레이 감각, 복구 대상, 상호작용, 아트 기준이 명확합니다.
+
+## 예상 작업 흐름
+
+1. M1에서 확인한 Unity 상태와 M2 목표를 기준으로 필요한 결정만 추립니다.
+2. 질문은 2라운드 이상으로 나누고, 각 라운드는 최대 3개의 선택형 질문으로 제한합니다.
+3. 확정한 값을 기획 문서와 아트 문서에 기록합니다.
+4. 최종 이미지 생성 프롬프트를 문서로 남깁니다.
+5. 컨셉 참고용 이미지 1장을 생성해 프로젝트 문서 경로에 저장합니다.
+6. M2에서 구현용 에셋이 아니라 기준 참고 자료로만 사용한다는 점을 기록합니다.
+
+## 예상 프롬프트
+
+```text
+M2 전에 Tiny Garden Restore의 최소 기획/아트 기준을 정리해줘.
+질문은 2라운드 이상으로 나눠 묻고, 확정값은 문서에 남겨줘.
+컨셉 참고용 이미지 1장도 생성해줘.
+```
+
+---
+
 # M2. Tiny Garden 기본 Scene 구성
 
 ## 목표
 
 Tiny Garden Restore의 첫 playable loop를 위한 아주 작은 정원 Scene을 구성합니다.
+
+M2는 M1.5에서 확정한 기획/아트 기준을 참조한 뒤 진행합니다.
 
 ## 완료 기준
 
