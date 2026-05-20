@@ -15,38 +15,46 @@ M2의 목표는 Tiny Garden Restore의 첫 playable loop를 위한 아주 작은
 
 ## 필수 체크리스트
 
-- [ ] M2-01: 작은 정원으로 보이는 기본 Scene이 준비됩니다.
+- [x] M2-01: 작은 정원으로 보이는 기본 Scene이 준비됩니다.
   - 확인 방법: Unity Scene에서 정원 영역을 나타내는 기본 오브젝트가 있는지 확인합니다.
   - 완료 증거: Scene 경로, 주요 오브젝트 이름, 화면 캡처 또는 Unity 확인 로그를 기록합니다.
-- [ ] M2-02: Player 역할의 오브젝트가 존재합니다.
+  - 확인 결과: `Assets/Scenes/SampleScene.unity`에 `TinyGardenRoot/GardenArea`가 있으며, `Transform.localScale=(6, 6, 1)`, `SpriteRenderer.isVisible=true`입니다.
+- [x] M2-02: Player 역할의 오브젝트가 존재합니다.
   - 확인 방법: Hierarchy에서 Player 역할 오브젝트를 확인합니다.
   - 완료 증거: Player 오브젝트 이름과 위치를 기록합니다.
-- [ ] M2-03: `잡초`, `시든 꽃`, `더러운 타일`이 놓일 수 있는 구역이 있습니다.
+  - 확인 결과: `TinyGardenRoot/Player`가 있으며, 위치는 `(-2, -1.55, 0)`, 크기는 `(0.62, 0.62, 1)`, `SpriteRenderer.isVisible=true`입니다.
+- [x] M2-03: `잡초`, `시든 꽃`, `더러운 타일`이 놓일 수 있는 구역이 있습니다.
   - 확인 방법: Scene에서 세 복구 대상이 각각 놓일 수 있는 빈 공간 또는 구역을 확인합니다.
   - 완료 증거: 세 구역의 위치, 크기, 관련 오브젝트 이름을 기록합니다.
-- [ ] M2-04: 오브젝트 이름이 명확합니다.
+  - 확인 결과: `TinyGardenRoot/RestoreTargets/WeedTargetArea` 위치 `(-1.75, 1.2, 0)`, 크기 `(0.75, 0.75, 1)`, `SpriteRenderer.isVisible=true`입니다.
+  - 확인 결과: `TinyGardenRoot/RestoreTargets/WiltedFlowerTargetArea` 위치 `(0, 1.2, 0)`, 크기 `(0.75, 0.75, 1)`, `SpriteRenderer.isVisible=true`입니다.
+  - 확인 결과: `TinyGardenRoot/RestoreTargets/DirtyTileTargetArea` 위치 `(1.75, 1.2, 0)`, 크기 `(0.75, 0.75, 1)`, `SpriteRenderer.isVisible=true`입니다.
+- [x] M2-04: 오브젝트 이름이 명확합니다.
   - 확인 방법: Hierarchy의 주요 오브젝트 이름이 역할을 설명하는지 확인합니다.
   - 완료 증거: 예: `Player`, `GardenArea`, `RestoreTargetArea` 같은 이름 목록을 기록합니다.
-- [ ] M2-05: 정원 전체가 한 화면에 보입니다.
+  - 확인 결과: 주요 이름은 `TinyGardenRoot`, `GardenArea`, `Player`, `RestoreTargets`, `WeedTargetArea`, `WiltedFlowerTargetArea`, `DirtyTileTargetArea`입니다.
+- [x] M2-05: 정원 전체가 한 화면에 보입니다.
   - 확인 방법: Unity Game view에서 카메라 이동 없이 Player와 세 복구 대상 구역이 한 화면에 들어오는지 확인합니다.
   - 완료 증거: compact square layout 확인 결과와 카메라 위치를 기록합니다.
-- [ ] M2-06: Unity에서 변경 사항을 확인할 수 있습니다.
+  - 확인 결과: `Main Camera` 위치 `(0, 0, -10)`, `orthographic=true`, `orthographicSize=3.8`입니다. `GardenArea`, `Player`, 세 복구 대상 placeholder의 `SpriteRenderer.isVisible=true`로 카메라에 들어오는 compact square layout을 확인했습니다.
+- [x] M2-06: Unity에서 변경 사항을 확인할 수 있습니다.
   - 확인 방법: Unity Editor에서 Scene 변경 결과를 직접 확인합니다.
   - 완료 증거: 저장된 Scene 경로, Console 상태, 확인 결과를 기록합니다.
+  - 확인 결과: Unity MCP `get_scene_info` 기준 active scene은 `Assets/Scenes/SampleScene.unity`, `Is Dirty=false`, `Root Count=3`입니다. Console error 조회 결과는 `[]`입니다. `Tools/Codex/M1/Run Play Mode Smoke Test` 완료 로그 `completed token=20260520T144132936Z`를 확인했습니다.
 
 ## 검증 증거
 
-- 확인한 파일:
-- 실행한 명령:
-- Unity 또는 도구에서 확인한 결과:
-- 확인 날짜:
+- 확인한 파일: `Assets/Scenes/SampleScene.unity`, `docs/milestones/M2-checklist.md`
+- 실행한 명령: `Get-Content -Path docs\milestones\M2-checklist.md`
+- Unity 또는 도구에서 확인한 결과: Unity MCP `get_scene_info`, `get_gameobject`, `get_console_logs`, `execute_menu_item`로 Scene 저장 상태, 주요 GameObject, 카메라 가시성, Console error 없음, M1 Play Mode Smoke Test 완료를 확인했습니다.
+- 확인 날짜: 2026-05-20 23:41 KST
 
 ## 미확인/예외
 
-- 아직 Tiny Garden 기본 Scene 구성을 수행하지 않았습니다.
+- 별도 화면 캡처 파일은 만들지 않았습니다. 체크리스트가 허용한 Unity 확인 로그로 `SpriteRenderer.isVisible=true`, 카메라 위치와 orthographic size, Console 상태를 확인했습니다.
 
 ## 최종 판정
 
-- 판정: 미완료
-- 판정 근거: M2 필수 체크리스트가 아직 검증되지 않았습니다.
-- 다음 조치: 현재 Scene을 확인한 뒤 작은 정원 영역, Player 오브젝트, `잡초`/`시든 꽃`/`더러운 타일` 배치 구역을 한 화면 고정형으로 구성합니다.
+- 판정: 완료
+- 판정 근거: M2 필수 체크리스트 M2-01부터 M2-06까지 모두 충족하며, 저장된 `SampleScene.unity`에서 작은 정원, Player, 세 복구 대상 placeholder, 명확한 오브젝트 이름, 한 화면 고정형 카메라 구성을 확인했습니다.
+- 다음 조치: M3에서 `Player` 이동 스크립트와 입력 처리를 구현합니다.
