@@ -774,7 +774,7 @@
             <p class="eyebrow">1:00 - 2:00</p>
             <h2>게임 범위는 의도적으로 작습니다</h2>
           </div>
-          <p class="time-box"><strong>핵심 감각</strong>작은 정원, 플레이어 이동, 복구 대상 상호작용, 완료 표시만 있으면 초기 목적에 충분합니다.</p>
+          <p class="time-box"><strong>핵심 감각</strong>M1.5에서 정한 잡초, 시든 꽃, 더러운 타일과 근처에서 E 상호작용만 있으면 초기 목적에 충분합니다.</p>
         </div>
 
         <div class="scope-layout">
@@ -787,8 +787,8 @@
             <ul class="scope-list">
               <li>작은 정원 Scene</li>
               <li>Player 이동</li>
-              <li>복구 대상 배치</li>
-              <li>Player와 복구 대상의 상호작용</li>
+              <li>잡초, 시든 꽃, 더러운 타일 배치 구역</li>
+              <li>Player와 복구 대상의 근처에서 E 상호작용</li>
               <li>복구 상태 변화와 완료 표시</li>
             </ul>
           </article>
@@ -853,15 +853,15 @@
             <p class="eyebrow">3:00 - 3:40</p>
             <h2>첫 playable loop는 다섯 단계입니다</h2>
           </div>
-          <p class="time-box"><strong>게임의 최소 끝</strong>이동하고, 복구하고, 모든 대상이 끝나면 완료 메시지가 나오는 흐름입니다.</p>
+          <p class="time-box"><strong>게임의 최소 끝</strong>이동하고, 세 복구 대상을 근처에서 E로 복구하고, 모두 끝나면 완료 메시지가 나오는 흐름입니다.</p>
         </div>
 
         <div class="loop" aria-label="플레이 루프">
           <div class="loop-step"><b>1</b><span>작은 정원에서 Player가 시작합니다.</span></div>
           <div class="loop-step"><b>2</b><span>키보드 입력으로 Player가 이동합니다.</span></div>
-          <div class="loop-step"><b>3</b><span>복구 대상 여러 개와 상호작용합니다.</span></div>
+          <div class="loop-step"><b>3</b><span>잡초, 시든 꽃, 더러운 타일 근처에서 E로 상호작용합니다.</span></div>
           <div class="loop-step"><b>4</b><span>각 대상의 상태가 복구됨으로 바뀝니다.</span></div>
-          <div class="loop-step"><b>5</b><span>모든 필수 대상 처리 후 완료 메시지를 표시합니다.</span></div>
+          <div class="loop-step"><b>5</b><span>세 복구 대상 처리 후 완료 메시지를 표시합니다.</span></div>
         </div>
       </section>
 
@@ -871,16 +871,17 @@
             <p class="eyebrow">3:40 - 4:30</p>
             <h2>M0부터 M7까지 한 줄로 보기</h2>
           </div>
-          <p class="time-box"><strong>진행 방향</strong>문서 정리에서 시작해 Unity 연결, Scene, 이동, 상호작용, loop 완성, 하네스 평가로 갑니다.</p>
+          <p class="time-box"><strong>진행 방향</strong>문서 정리에서 시작해 Unity 연결, M1.5 Creative Gate, Scene, 이동, 상호작용, loop 완성, 하네스 평가로 갑니다.</p>
         </div>
 
         <div class="milestones">
           <article class="milestone"><code>M0</code><div><h3>기준 문서 정리</h3><p>README, AGENTS, project-goal, ExecPlan 참조 파일을 준비합니다.</p></div><span class="tag">기초</span></article>
           <article class="milestone"><code>M1</code><div><h3>Unity MCP 연결 확인</h3><p>CoderGamester MCP 연결, Console log 왕복, package/asset 조회, Scene, Play Mode 가능 여부를 확인합니다.</p></div><span class="tag">검증 연결</span></article>
-          <article class="milestone"><code>M2</code><div><h3>Tiny Garden 기본 Scene 구성</h3><p>정원 영역, Player, 카메라를 가장 단순하게 배치합니다.</p></div><span class="tag">공간</span></article>
+          <article class="milestone"><code>M1.5</code><div><h3>Tiny Garden 기획/아트 기준 정리</h3><p>M2 전에 top-down, 작은 정원사, 세 복구 대상, 근처에서 E, 컨셉 이미지 참고용 기준을 고정합니다.</p></div><span class="tag">Creative Gate</span></article>
+          <article class="milestone"><code>M2</code><div><h3>Tiny Garden 기본 Scene 구성</h3><p>정원 영역, Player, 잡초/시든 꽃/더러운 타일 구역, 카메라를 가장 단순하게 배치합니다.</p></div><span class="tag">공간</span></article>
           <article class="milestone"><code>M3</code><div><h3>Player 이동 구현</h3><p>키보드 입력으로 작은 정원 안에서 움직일 수 있게 합니다.</p></div><span class="tag">조작</span></article>
-          <article class="milestone"><code>M4</code><div><h3>복구 대상 상호작용 구현</h3><p>대상과 충돌 또는 입력으로 상호작용하고 상태를 바꿉니다.</p></div><span class="tag">상호작용</span></article>
-          <article class="milestone"><code>M5</code><div><h3>첫 playable loop 완성</h3><p>복구 대상 3개 처리 후 완료 메시지까지 이어지게 합니다.</p></div><span class="tag">완성 루프</span></article>
+          <article class="milestone"><code>M4</code><div><h3>복구 대상 상호작용 구현</h3><p>복구 대상 근처에서 E를 눌러 상태를 바꿉니다.</p></div><span class="tag">상호작용</span></article>
+          <article class="milestone"><code>M5</code><div><h3>첫 playable loop 완성</h3><p>잡초, 시든 꽃, 더러운 타일 처리 후 완료 메시지까지 이어지게 합니다.</p></div><span class="tag">완성 루프</span></article>
           <article class="milestone"><code>M6</code><div><h3>경량 하네스 평가</h3><p>AGENTS, Plan mode, ExecPlan, Unity MCP, 짧은 프롬프트를 평가합니다.</p></div><span class="tag">판단</span></article>
           <article class="milestone"><code>M7</code><div><h3>선택 실험: Skill / Hooks</h3><p>필요성이 확인된 경우에만 작은 보조 실험으로 진행합니다.</p></div><span class="tag">선택</span></article>
         </div>
@@ -944,7 +945,7 @@
         <h2>5분 요약: 이 저장소는 “작은 게임을 만들며 최소 Codex 하네스를 검증하는 실험장”입니다.</h2>
         <p>
           Tiny Garden Restore의 복잡도를 낮게 유지해야 하네스의 실제 효용이 보입니다.
-          M5까지는 playable loop를 작게 완성하고, M6에서 AGENTS.md, Plan mode, CoderGamester Unity MCP,
+          M1.5 Creative Gate를 기준으로 M5까지는 playable loop를 작게 완성하고, M6에서 AGENTS.md, Plan mode, CoderGamester Unity MCP,
           ExecPlan 참조, 짧은 프롬프트가 각각 유지할 가치가 있는지 판단합니다.
         </p>
       </section>

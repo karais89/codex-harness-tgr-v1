@@ -9,18 +9,34 @@
 ## 최종 프롬프트
 
 ```text
-Use case: stylized-concept
-Asset type: concept reference board for a small Unity 2D game
-Primary request: Create one cozy top-down 2D concept board for Tiny Garden Restore, showing a small neglected garden with a small gardener character and three clear restore targets: weeds, a wilted flower, and a dirty stone tile.
-Scene/backdrop: a compact spring garden seen from above, with part of the scene neglected and part restored in the same image.
-Subject: a small gardener character standing near the restore targets.
-Style/medium: cozy 2D game concept art, soft shapes, readable object silhouettes, gentle hand-painted feel.
-Composition/framing: top-down view, one cohesive garden scene, enough spacing so the weeds, wilted flower, dirty stone tile, gardener, neglected area, and restored area are visually distinct.
-Lighting/mood: calm, quiet restoration mood with soft daylight.
-Color palette: soft spring garden palette with fresh greens, light soil browns, gentle flower colors, clean stone grays, and slightly muted colors for neglected areas.
-Constraints: no text, no watermark, no UI labels, no speech bubbles, no logos, no inventory, no shop, no complex interface.
-Avoid: photorealism, 3D render, isometric perspective, side view, dark fantasy mood, large buildings, combat elements, busy decoration, unreadable clutter.
+Draw one cozy top-down 2D concept board for Tiny Garden Restore, a small Unity game about quietly restoring a neglected spring garden.
+
+Show one cohesive compact garden scene from above with a small gardener character and exactly three clear restoration targets: weeds, a wilted flower, and a dirty stone tile.
+
+Make the neglected area and restored area visible in the same image, with enough spacing so the gardener, weeds, wilted flower, dirty stone tile, neglected soil, clean stone, and restored flowers are visually distinct.
+
+Use cozy 2D game concept art with soft shapes, readable object silhouettes, gentle hand-painted texture, calm daylight, fresh greens, light soil browns, gentle flower colors, clean stone grays, and slightly muted colors for neglected areas.
+
+Do not include text, watermark, UI labels, speech bubbles, logos, inventory, shop UI, complex interface, photorealism, 3D render, isometric perspective, side view, dark survival mood, combat, weapons, monsters, large buildings, busy decoration, or unreadable clutter.
 ```
+
+## 도구 기준
+
+OpenAI 공식 이미지 생성 문서 기준으로 다음 중 하나를 사용합니다.
+
+- Responses API: `gpt-5.5` 같은 mainline model에서 `image_generation` tool을 호출합니다.
+- Image API: `gpt-image-2`를 직접 지정해 단일 이미지 생성을 요청합니다.
+
+이 프로젝트에서는 컨셉 참고 이미지 1장이 목적이므로 Image API의 `gpt-image-2` 또는 Responses API의 `image_generation` tool 중 더 단순한 쪽을 선택합니다.
+
+## 생성 결과 기록
+
+- 생성 도구:
+- 모델:
+- 저장 경로: `docs/art/images/tiny-garden-concept-board-01.png`
+- 원본 프롬프트:
+- `revised_prompt`: API 응답에서 제공된 경우 여기에 기록합니다.
+- 시각 검수 결과:
 
 ## 피해야 할 요소
 
