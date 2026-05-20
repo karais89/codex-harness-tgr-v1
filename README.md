@@ -14,7 +14,7 @@ Tiny Garden Restore는 작은 정원을 복구하는 Unity 2D 게임입니다.
 - Karpathy Guidelines 기반 `AGENTS.md`
 - Codex 기본 Plan mode
 - OpenAI ExecPlan 원문 참조 파일
-- CoplayDev Unity MCP
+- CoderGamester Unity MCP (`com.gamelovers.mcp-unity`)
 - 최소한의 프로젝트 문서
 
 이 프로젝트의 핵심은 하네스 구성요소를 많이 넣는 것이 아닙니다.  
@@ -142,15 +142,19 @@ OpenAI Codex ExecPlan 문서의 원문 참조 파일입니다.
 
 ## Unity MCP
 
-이 프로젝트는 Unity 작업 검증을 위해 CoplayDev Unity MCP를 기본 MCP 후보로 사용합니다.
+이 프로젝트는 Unity 작업 검증을 위해 `CoderGamester/mcp-unity`를 기본 MCP로 사용합니다.
+
+선정 근거와 후보 비교는 `docs/unity-mcp-comparison-2026-05-20.md`에 기록합니다. 현재 Unity 패키지는 `Packages/manifest.json`에서 `com.gamelovers.mcp-unity`를 특정 커밋으로 고정합니다.
 
 Unity MCP를 통해 다음을 확인합니다.
 
 - Unity Editor와 Codex 연결 가능 여부
-- Scene / GameObject / Script 작업 가능 여부
-- Console error 확인 가능 여부
-- Play Mode 실행 가능 여부
-- 간단한 gameplay loop 검증 가능 여부
+- Unity Console log 조회와 log 왕복 전송 가능 여부
+- Unity package / asset 리소스 조회 가능 여부
+- Scene / GameObject / Play Mode 확인이 MCP로 가능한지 여부
+- MCP가 직접 제공하지 않는 확인 항목을 Unity Editor 검증으로 보완할 수 있는지 여부
+
+M1의 첫 smoke test는 파괴적 작업 없이 `get_console_logs`, `unity://packages`, `unity://assets`, `send_console_log` 순서로 진행합니다. 기본 연결은 `localhost:8090`을 사용하고 원격 연결은 켜지 않습니다.
 
 ## 문서 작성 규칙
 
