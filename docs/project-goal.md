@@ -16,6 +16,8 @@ Tiny Garden Restore
 
 이 프로젝트는 더 복잡한 하네스를 만드는 것이 목적이 아닙니다.
 
+이 프로젝트는 `codex-harness-dbz-v0` 하네스의 확장판이 아니라, 작은 Unity playable loop에 필요한 최소 하네스 구성을 찾기 위한 경량화 실험입니다.
+
 목적은 Tiny Garden Restore의 작은 playable loop를 실제로 만들면서, 최소한의 하네스 구성으로 Codex가 작업을 계획하고, 구현하고, 검증할 수 있는지 확인하는 것입니다.
 
 ## 게임 기본 방향
