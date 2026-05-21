@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gamejam Producer"
+  short_description: "오늘의 Unity 프로토타입 데모 범위를 정합니다."
+  default_prompt: "Use $gamejam-producer to choose today's demo scope, 20-second demo, riskiest task, final screenshot, and done criteria."
