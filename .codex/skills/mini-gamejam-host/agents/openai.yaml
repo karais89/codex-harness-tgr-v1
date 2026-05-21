@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mini Gamejam Host"
+  short_description: "소규모 게임잼 주제 발표와 일정, 체크인 운영"
+  default_prompt: "Use $mini-gamejam-host to start a 4-hour solo game jam and manage theme, schedule, check-ins, and submission."

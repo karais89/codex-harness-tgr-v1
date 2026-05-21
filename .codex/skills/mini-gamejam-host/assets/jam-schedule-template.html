@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{JAM_TITLE}} Schedule</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d7d9dd;
+      --paper: #ffffff;
+      --soft: #f5f7fa;
+      --accent: #0f766e;
+      --warn: #b45309;
+      --danger: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    header {
+      border-bottom: 3px solid var(--accent);
+      background: var(--paper);
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+
+    section {
+      margin-top: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 20px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta div,
+    .checklist li {
+      border: 1px solid var(--line);
+      background: #fbfcfd;
+      padding: 12px;
+    }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .value {
+      display: block;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef5f4;
+      font-size: 13px;
+    }
+
+    .scope-cut td {
+      border-color: var(--warn);
+      background: #fff7ed;
+      font-weight: 700;
+    }
+
+    .submission td {
+      border-color: var(--accent);
+      background: #ecfdf5;
+    }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .goal-grid p {
+      margin: 0;
+      min-height: 72px;
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #fbfcfd;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 18px 12px 32px;
+      }
+
+      .meta,
+      .goal-grid,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 12px;
+      }
+
+      td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>{{JAM_TITLE}}</h1>
+      <div class="label">Theme</div>
+      <div class="value">{{THEME}}</div>
+      <div class="meta">
+        <div><span class="label">Start</span><span class="value">{{START_TIME}}</span></div>
+        <div><span class="label">End</span><span class="value">{{END_TIME}}</span></div>
+        <div><span class="label">Remaining</span><span class="value">{{REMAINING_TIME}}</span></div>
+        <div><span class="label">Mode</span><span class="value">{{JAM_MODE}}</span></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>목표와 산출물</h2>
+      <div class="goal-grid">
+        <p><strong>Goal</strong><br>{{GOAL}}</p>
+        <p><strong>Deliverable</strong><br>{{DELIVERABLE}}</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Time Blocks</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Focus</th>
+            <th>Done When</th>
+            <th>Cut If Late</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Time">{{BLOCK_1_TIME}}</td>
+            <td data-label="Focus">{{BLOCK_1_FOCUS}}</td>
+            <td data-label="Done When">{{BLOCK_1_DONE}}</td>
+            <td data-label="Cut If Late">{{BLOCK_1_CUT}}</td>
+          </tr>
+          <tr>
+            <td data-label="Time">{{BLOCK_2_TIME}}</td>
+            <td data-label="Focus">{{BLOCK_2_FOCUS}}</td>
+            <td data-label="Done When">{{BLOCK_2_DONE}}</td>
+            <td data-label="Cut If Late">{{BLOCK_2_CUT}}</td>
+          </tr>
+          <tr>
+            <td data-label="Time">{{BLOCK_3_TIME}}</td>
+            <td data-label="Focus">{{BLOCK_3_FOCUS}}</td>
+            <td data-label="Done When">{{BLOCK_3_DONE}}</td>
+            <td data-label="Cut If Late">{{BLOCK_3_CUT}}</td>
+          </tr>
+          <tr class="scope-cut">
+            <td data-label="Time">{{SCOPE_CUT_TIME}}</td>
+            <td data-label="Focus">Scope cut marker</td>
+            <td data-label="Done When">새 기능 중단, playable 유지</td>
+            <td data-label="Cut If Late">콘텐츠, 연출, 부가 시스템</td>
+          </tr>
+          <tr class="submission">
+            <td data-label="Time">{{SUBMISSION_TIME}}</td>
+            <td data-label="Focus">Submission buffer</td>
+            <td data-label="Done When">빌드 실행 확인, 설명과 스크린샷 준비</td>
+            <td data-label="Cut If Late">새 밸런스 조정</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Checkpoints</h2>
+      <div class="goal-grid">
+        <p><strong>Checkpoint 1</strong><br>{{CHECKPOINT_1}}</p>
+        <p><strong>Checkpoint 2</strong><br>{{CHECKPOINT_2}}</p>
+        <p><strong>Checkpoint 3</strong><br>{{CHECKPOINT_3}}</p>
+        <p><strong>Final Demo</strong><br>{{FINAL_DEMO}}</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Submission Checklist</h2>
+      <ul class="checklist">
+        <li>{{CHECKLIST_BUILD}}</li>
+        <li>{{CHECKLIST_CONTROLS}}</li>
+        <li>{{CHECKLIST_DESCRIPTION}}</li>
+        <li>{{CHECKLIST_SCREENSHOT}}</li>
+        <li>{{CHECKLIST_CREDITS}}</li>
+        <li>{{CHECKLIST_KNOWN_ISSUES}}</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
