@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Garden Restore v2 목표 시각화</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f0e7;
+      --surface: #fffdf8;
+      --ink: #20231f;
+      --muted: #62685f;
+      --line: #d7cbb8;
+      --leaf: #2f7d4e;
+      --water: #266b8f;
+      --clay: #b85a43;
+      --amber: #d39a25;
+      --violet: #655a90;
+      --soft-leaf: #e4efe5;
+      --soft-water: #e1edf2;
+      --soft-clay: #f2e4df;
+      --soft-amber: #f5edcf;
+      --shadow: 0 18px 42px rgba(49, 42, 32, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(32, 35, 31, 0.04) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(32, 35, 31, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      color: var(--ink);
+      font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      line-height: 1.64;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 276px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .rail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      border-right: 1px solid var(--line);
+      background: #ece0cd;
+    }
+
+    .rail h1 {
+      margin: 0 0 8px;
+      font-size: 1.42rem;
+      line-height: 1.18;
+    }
+
+    .rail p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav a,
+    .source {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 9px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .source {
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible,
+    .source:hover,
+    .source:focus-visible {
+      background: var(--surface);
+      color: var(--ink);
+      outline: 2px solid transparent;
+    }
+
+    .badge {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--surface);
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(330px, 0.75fr);
+      gap: 34px;
+      align-items: center;
+      min-height: 86vh;
+      padding: 56px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.72);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--leaf);
+      font-size: 0.86rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(2.5rem, 5vw, 4.55rem);
+    }
+
+    h2 {
+      font-size: clamp(1.85rem, 3vw, 2.46rem);
+    }
+
+    h3 {
+      font-size: 1.18rem;
+    }
+
+    .lede {
+      max-width: 820px;
+      margin: 24px 0 0;
+      color: #3d433c;
+      font-size: 1.08rem;
+    }
+
+    .ratio {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      height: 42px;
+      margin-top: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .ratio div {
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .ratio .game {
+      background: var(--leaf);
+    }
+
+    .ratio .harness {
+      background: var(--water);
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .summary,
+    .card,
+    .wide-card,
+    .milestone,
+    .checklink {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 24px rgba(49, 42, 32, 0.08);
+    }
+
+    .summary {
+      min-height: 112px;
+      padding: 18px;
+    }
+
+    .summary strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--leaf);
+      font-size: 1.36rem;
+      line-height: 1;
+    }
+
+    .summary span,
+    .card p,
+    .wide-card p,
+    .milestone p,
+    .checklink p {
+      color: var(--muted);
+    }
+
+    .map {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+      border: 1px solid #b9aa93;
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .node {
+      position: relative;
+      padding: 16px 16px 16px 56px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf8f0;
+    }
+
+    .node::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--water);
+      color: #fff;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .node strong,
+    .node span {
+      display: block;
+    }
+
+    .node span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 54px 56px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.74);
+    }
+
+    .section:nth-of-type(odd) {
+      background: rgba(236, 224, 205, 0.58);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.5fr);
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .note {
+      margin: 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card,
+    .wide-card {
+      padding: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--soft-leaf);
+      color: #285c3b;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .pill.water {
+      background: var(--soft-water);
+      color: var(--water);
+    }
+
+    .pill.clay {
+      background: var(--soft-clay);
+      color: var(--clay);
+    }
+
+    .pill.amber {
+      background: var(--soft-amber);
+      color: #775817;
+    }
+
+    .pill.violet {
+      background: #e8e3f1;
+      color: var(--violet);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding-left: 18px;
+      border-left: 4px solid var(--leaf);
+      color: var(--muted);
+    }
+
+    .out .list li {
+      border-left-color: var(--clay);
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pipe {
+      min-height: 112px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf8f0;
+    }
+
+    .pipe strong {
+      display: block;
+      color: var(--water);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .milestone {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) minmax(170px, 0.34fr);
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+    }
+
+    .milestone code {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--surface);
+      font-weight: 900;
+    }
+
+    .milestone .status {
+      justify-self: start;
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .checklink {
+      display: block;
+      min-height: 132px;
+      padding: 16px;
+    }
+
+    .checklink a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .checklink a:hover,
+    .checklink a:focus-visible {
+      color: var(--water);
+      outline: 2px solid transparent;
+    }
+
+    .footer {
+      padding: 42px 56px 56px;
+      background: #20231f;
+      color: var(--surface);
+    }
+
+    .footer p {
+      max-width: 940px;
+      margin: 14px 0 0;
+      color: rgba(255, 253, 248, 0.76);
+    }
+
+    @media (max-width: 1120px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        height: auto;
+      }
+
+      .nav {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .cards,
+      .checks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pipeline {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .section,
+      .footer {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .summary-strip,
+      .section-head,
+      .cards,
+      .split,
+      .checks,
+      .nav,
+      .pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .milestone {
+        grid-template-columns: 72px minmax(0, 1fr);
+      }
+
+      .milestone .status {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="rail" aria-label="v2 목표 탐색">
+      <h1>Tiny Garden Restore v2</h1>
+      <p>이미지 교체, AI 실수 장부, UX 검증 보강을 한눈에 보는 문서</p>
+      <a class="source" href="./project-goal-v2.md"><span class="badge">MD</span>원문 보기</a>
+      <ul class="nav">
+        <li><a href="#goal"><span class="badge">1</span>목적</a></li>
+        <li><a href="#scope"><span class="badge">2</span>범위</a></li>
+        <li><a href="#image"><span class="badge">3</span>이미지</a></li>
+        <li><a href="#milestones"><span class="badge">4</span>마일스톤</a></li>
+        <li><a href="#checklists"><span class="badge">5</span>체크리스트</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <section class="hero" id="goal">
+        <div>
+          <p class="eyebrow">v2 기준 문서</p>
+          <h1>v2는 실제 Unity Scene 에셋 교체와 AI 실수 방지를 포함합니다.</h1>
+          <p class="lede">
+            v1 playable loop는 유지합니다. v2는 세 복구 대상 이미지를 실제 Scene에 반영하고,
+            그 뒤 최소 UX 피드백과 Game view 검증을 보강합니다. 동시에 `docs/ai-mistakes.md`를 만들어 Codex 반복 실수를 줄입니다.
+          </p>
+          <div class="ratio" aria-label="v2 비중">
+            <div class="game">게임 개선 60%</div>
+            <div class="harness">하네스 / AI 실수 관리 40%</div>
+          </div>
+          <div class="summary-strip">
+            <div class="summary"><strong>이미지</strong><span>잡초, 시든 꽃, 더러운 타일은 필수 교체 대상입니다.</span></div>
+            <div class="summary"><strong>장부</strong><span>`docs/ai-mistakes.md`는 v2 시작 시 바로 생성합니다.</span></div>
+            <div class="summary"><strong>검증</strong><span>Play Mode 로직과 Game view 판독을 분리합니다.</span></div>
+          </div>
+        </div>
+
+        <div class="map" aria-label="v2 판단 흐름">
+          <div class="node" data-step="0"><strong>범위 재확정</strong><span>이미지 교체, AI 실수 장부, UX/검증 보강을 모두 포함합니다.</span></div>
+          <div class="node" data-step="1"><strong>AI 실수 장부</strong><span>실수, 영향, 재발 방지 규칙, 관련 근거만 기록합니다.</span></div>
+          <div class="node" data-step="2"><strong>이미지 기준</strong><span>기존 아트 기준을 보고 프롬프트와 선정 기준을 먼저 정합니다.</span></div>
+          <div class="node" data-step="3"><strong>Scene 교체</strong><span>생성/선정한 이미지를 실제 Unity Scene에 반영합니다.</span></div>
+          <div class="node" data-step="4"><strong>UX와 검증</strong><span>진행도, E 표시, 복구 피드백, Game view 검증을 보강합니다.</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="scope">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">scope</p>
+            <h2>v2의 세 축</h2>
+          </div>
+          <p class="note">이번 v2는 단순 피드백 보강만이 아니라 실제 이미지 교체와 AI 실수 장부를 명시적 산출물로 포함합니다.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card"><span class="pill">게임 개선</span><h3>이미지 교체</h3><p>복구 대상 3개의 새 이미지를 생성/선정하고 Unity Scene에 실제 적용합니다.</p></article>
+          <article class="card"><span class="pill violet">실수 방지</span><h3>AI 실수 장부</h3><p>반복 가능한 실수를 작게 기록하고 다음 작업의 재발 방지 규칙으로 사용합니다.</p></article>
+          <article class="card"><span class="pill water">검증 보강</span><h3>UX와 Game view</h3><p>진행도, E 피드백, 복구 후 시각 피드백을 화면 판독 기준으로 확인합니다.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="image">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">image replacement</p>
+            <h2>이미지 교체는 문서화에서 끝나지 않습니다</h2>
+          </div>
+          <p class="note">필수 대상은 잡초, 시든 꽃, 더러운 타일입니다. Player는 생성 결과와 작업량을 보고 선택합니다.</p>
+        </div>
+
+        <div class="split">
+          <article class="wide-card">
+            <span class="pill">교체 흐름</span>
+            <h3>기획 확정 -> 아트 기준 -> 생성 -> 선정 -> Unity 교체</h3>
+            <div class="pipeline" aria-label="이미지 교체 파이프라인">
+              <div class="pipe"><strong>1</strong><span>v1 아트 기준 확인</span></div>
+              <div class="pipe"><strong>2</strong><span>교체 목적 정의</span></div>
+              <div class="pipe"><strong>3</strong><span>대상별 프롬프트</span></div>
+              <div class="pipe"><strong>4</strong><span>이미지 생성</span></div>
+              <div class="pipe"><strong>5</strong><span>Unity 사용성 확인</span></div>
+              <div class="pipe"><strong>6</strong><span>Scene 교체</span></div>
+            </div>
+          </article>
+
+          <article class="wide-card out">
+            <span class="pill clay">제외</span>
+            <h3>이미지 교체와 함께 키우지 않을 시스템</h3>
+            <ul class="list">
+              <li>인벤토리, 도구 선택, 대상별 도구 매칭</li>
+              <li>점수, 콤보, 성장, 경제, 상점</li>
+              <li>여러 정원, 여러 스테이지, 세이브/로드</li>
+              <li>복구 순서 퍼즐, 랜덤 배치, 제한 시간</li>
+              <li>memory-bank 또는 큰 workflow 문서</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="milestones">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">milestones</p>
+            <h2>v2 마일스톤 흐름</h2>
+          </div>
+          <p class="note">v2 체크리스트는 기존 v1 파일과 섞지 않고 `docs/milestones/v2/` 아래에 둡니다.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="milestone"><code>V2-M0</code><div><h3>범위 재확정과 현재 상태 확인</h3><p>v2의 세 축과 현재 hook/skill 상태를 확인합니다.</p></div><span class="pill water status">착수</span></article>
+          <article class="milestone"><code>V2-M1</code><div><h3>AI 실수 장부 생성</h3><p>`docs/ai-mistakes.md`를 만들고 첫 기록을 남깁니다.</p></div><span class="pill violet status">장부</span></article>
+          <article class="milestone"><code>V2-M2</code><div><h3>이미지 교체 기준 확정</h3><p>아트 기준, 교체 목적, 대상별 프롬프트를 정리합니다.</p></div><span class="pill amber status">기준</span></article>
+          <article class="milestone"><code>V2-M3</code><div><h3>이미지 생성과 선정</h3><p>필수 복구 대상 3개의 이미지 후보를 만들고 고릅니다.</p></div><span class="pill amber status">생성</span></article>
+          <article class="milestone"><code>V2-M4</code><div><h3>Unity Scene 에셋 교체</h3><p>선정 이미지를 실제 Scene에 반영합니다.</p></div><span class="pill status">Unity</span></article>
+          <article class="milestone"><code>V2-M5</code><div><h3>최소 UX 피드백 보강</h3><p>진행도, E 표시, 복구 후 시각 피드백을 추가합니다.</p></div><span class="pill water status">UX</span></article>
+          <article class="milestone"><code>V2-M6</code><div><h3>Game view / Play Mode 검증</h3><p>로직 통과와 화면 판독을 분리해 기록합니다.</p></div><span class="pill water status">검증</span></article>
+          <article class="milestone"><code>V2-M7</code><div><h3>v2 결과 평가</h3><p>유지할 것, 되돌릴 것, 다음 프로젝트로 넘길 것을 나눕니다.</p></div><span class="pill clay status">평가</span></article>
+        </div>
+      </section>
+
+      <section class="section" id="checklists">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">checklists</p>
+            <h2>마일스톤별 체크리스트</h2>
+          </div>
+          <p class="note">아래 문서는 모두 착수용 체크리스트이며 현재 판정은 미완료입니다.</p>
+        </div>
+
+        <div class="checks">
+          <div class="checklink"><span class="pill water">V2-M0</span><h3><a href="./milestones/v2/V2-M0-checklist.md">범위 재확정</a></h3><p>v2 세 축과 현재 상태 확인</p></div>
+          <div class="checklink"><span class="pill violet">V2-M1</span><h3><a href="./milestones/v2/V2-M1-checklist.md">AI 실수 장부</a></h3><p>장부 생성과 첫 기록</p></div>
+          <div class="checklink"><span class="pill amber">V2-M2</span><h3><a href="./milestones/v2/V2-M2-checklist.md">이미지 기준</a></h3><p>기준과 프롬프트 정리</p></div>
+          <div class="checklink"><span class="pill amber">V2-M3</span><h3><a href="./milestones/v2/V2-M3-checklist.md">이미지 생성</a></h3><p>생성, 선정, 사용성 판단</p></div>
+          <div class="checklink"><span class="pill">V2-M4</span><h3><a href="./milestones/v2/V2-M4-checklist.md">Scene 교체</a></h3><p>실제 Unity 적용</p></div>
+          <div class="checklink"><span class="pill water">V2-M5</span><h3><a href="./milestones/v2/V2-M5-checklist.md">UX 보강</a></h3><p>진행도와 E 피드백</p></div>
+          <div class="checklink"><span class="pill water">V2-M6</span><h3><a href="./milestones/v2/V2-M6-checklist.md">검증 보강</a></h3><p>Play Mode와 Game view</p></div>
+          <div class="checklink"><span class="pill clay">V2-M7</span><h3><a href="./milestones/v2/V2-M7-checklist.md">결과 평가</a></h3><p>v1 대비 평가</p></div>
+        </div>
+      </section>
+
+      <section class="footer">
+        <h2>읽는 결론</h2>
+        <p>
+          v2는 Tiny Garden Restore를 크게 키우는 단계가 아닙니다. 하지만 단순 UX 검증만도 아닙니다.
+          실제 Unity Scene 에셋 교체를 포함한 게임 개선과, `docs/ai-mistakes.md`를 통한 반복 실수 관리가 함께 들어가는 후속 마일스톤입니다.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
