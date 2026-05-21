@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tiny Garden Playmode Check"
+  short_description: "Unity Scene, Console, smoke 검증 루틴"
+  default_prompt: "Use $tiny-garden-playmode-check to verify Tiny Garden Restore in Unity."
