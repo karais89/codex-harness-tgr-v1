@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390804626}
   - component: {fileID: 390804627}
+  - component: {fileID: 390804628}
   m_Layer: 0
   m_Name: DirtyTileTargetArea
   m_TagString: Untagged
@@ -210,6 +211,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &390804628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390804625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd82b2b581c47d7854646ac8d2307bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestoreTarget
+  player: {fileID: 1301465222}
+  interactionDistance: 1
+  hideOnRestore: 0
+  restoredColor: {r: 0.9, g: 0.85, b: 0.68, a: 1}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +554,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RestoreTarget
   player: {fileID: 1301465222}
   interactionDistance: 1
+  hideOnRestore: 1
+  restoredColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1301465221
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399370361}
+  - component: {fileID: 1399370362}
   m_Layer: 0
   m_Name: RestoreTargets
   m_TagString: Untagged
@@ -676,6 +696,18 @@ Transform:
   - {fileID: 390804626}
   m_Father: {fileID: 2094117869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1399370362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399370360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a6a119c4f941568835fcf4cb7625f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GardenLoopController
 --- !u!1 &1718926151
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718926152}
   - component: {fileID: 1718926153}
+  - component: {fileID: 1718926154}
   m_Layer: 0
   m_Name: WiltedFlowerTargetArea
   m_TagString: Untagged
@@ -767,6 +800,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1718926154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718926151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd82b2b581c47d7854646ac8d2307bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestoreTarget
+  player: {fileID: 1301465222}
+  interactionDistance: 1
+  hideOnRestore: 0
+  restoredColor: {r: 1, g: 0.78, b: 0.9, a: 1}
 --- !u!1 &1755368416
 GameObject:
   m_ObjectHideFlags: 0

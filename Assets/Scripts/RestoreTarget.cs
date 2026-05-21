@@ -5,9 +5,13 @@ public sealed class RestoreTarget : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float interactionDistance = 1f;
+    [SerializeField] private bool hideOnRestore = true;
+    [SerializeField] private Color restoredColor = Color.white;
 
     private SpriteRenderer spriteRenderer;
     private bool restored;
+
+    public bool IsRestored => restored;
 
     private void Awake()
     {
@@ -33,6 +37,13 @@ public sealed class RestoreTarget : MonoBehaviour
         }
 
         restored = true;
-        spriteRenderer.enabled = false;
+
+        if (hideOnRestore)
+        {
+            spriteRenderer.enabled = false;
+            return;
+        }
+
+        spriteRenderer.color = restoredColor;
     }
 }
