@@ -1,3 +1,19 @@
 [mcp_servers.mcp-unity]
 command = "node"
 args = ["Library/PackageCache/com.gamelovers.mcp-unity@a32e47d4ec87/Server~/build/index.js"]
+
+[[hooks.UserPromptSubmit]]
+[[hooks.UserPromptSubmit.hooks]]
+type = "command"
+command = 'python "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
+timeout = 30
+statusMessage = "Checking Unity MCP preflight"
+
+[[hooks.PreToolUse]]
+matcher = "^(apply_patch|mcp__mcp_unity__.*)$"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = 'python "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
+timeout = 30
+statusMessage = "Checking Unity MCP preflight"
