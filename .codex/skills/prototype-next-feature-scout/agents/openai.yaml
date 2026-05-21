@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prototype Next Feature Scout"
+  short_description: "작은 프로토타입의 다음 기능 후보를 비교 추천합니다"
+  default_prompt: "Use $prototype-next-feature-scout to inspect this small game prototype, compare content/UX/system candidates, and recommend one next feature."
