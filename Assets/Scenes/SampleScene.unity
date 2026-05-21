@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -441,6 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039765997}
   - component: {fileID: 1039765998}
+  - component: {fileID: 1039765999}
   m_Layer: 0
   m_Name: WeedTargetArea
   m_TagString: Untagged
@@ -522,6 +523,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1039765999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039765996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd82b2b581c47d7854646ac8d2307bf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::RestoreTarget
+  player: {fileID: 1301465222}
+  interactionDistance: 1
 --- !u!1 &1301465221
 GameObject:
   m_ObjectHideFlags: 0
