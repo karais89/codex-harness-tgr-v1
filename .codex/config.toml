@@ -5,7 +5,7 @@ args = ["Library/PackageCache/com.gamelovers.mcp-unity@a32e47d4ec87/Server~/buil
 [[hooks.UserPromptSubmit]]
 [[hooks.UserPromptSubmit.hooks]]
 type = "command"
-command = 'python "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
+command = 'python3 "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
 timeout = 30
 statusMessage = "Checking Unity MCP preflight"
 
@@ -14,6 +14,6 @@ matcher = "^(apply_patch|mcp__mcp_unity__.*)$"
 
 [[hooks.PreToolUse.hooks]]
 type = "command"
-command = 'python "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
+command = 'python3 "$(git rev-parse --show-toplevel)/.codex/hooks/unity_mcp_preflight.py"'
 timeout = 30
 statusMessage = "Checking Unity MCP preflight"
