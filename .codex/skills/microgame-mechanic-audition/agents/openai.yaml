@@ -1,0 +1,4 @@
+interface:
+  display_name: "Microgame Mechanic Audition"
+  short_description: "Compare microgame mechanic candidates"
+  default_prompt: "Use $microgame-mechanic-audition to compare candidate micro mechanics for a small Unity prototype."
