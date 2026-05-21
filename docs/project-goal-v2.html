@@ -543,10 +543,10 @@
       <section class="hero" id="goal">
         <div>
           <p class="eyebrow">v2 기준 문서</p>
-          <h1>v2는 실제 Unity Scene 에셋 교체와 AI 실수 방지를 포함합니다.</h1>
+          <h1>v2는 이미지 교체와 작은 복구 시스템 보강을 포함합니다.</h1>
           <p class="lede">
             v1 playable loop는 유지합니다. v2는 세 복구 대상 이미지를 실제 Scene에 반영하고,
-            그 뒤 최소 UX 피드백과 Game view 검증을 보강합니다. 동시에 `docs/ai-mistakes.md`를 만들어 Codex 반복 실수를 줄입니다.
+            그 뒤 count 기반 해금 조건과 최소 UX 피드백을 보강합니다. 동시에 `docs/ai-mistakes.md`를 만들어 Codex 반복 실수를 줄입니다.
           </p>
           <div class="ratio" aria-label="v2 비중">
             <div class="game">게임 개선 60%</div>
@@ -555,16 +555,16 @@
           <div class="summary-strip">
             <div class="summary"><strong>이미지</strong><span>잡초, 시든 꽃, 더러운 타일은 필수 교체 대상입니다.</span></div>
             <div class="summary"><strong>장부</strong><span>`docs/ai-mistakes.md`는 v2 시작 시 바로 생성합니다.</span></div>
-            <div class="summary"><strong>검증</strong><span>Play Mode 로직과 Game view 판독을 분리합니다.</span></div>
+            <div class="summary"><strong>시스템</strong><span>잡초/타일 먼저, 1개 이상 복구 후 시든 꽃을 해금합니다.</span></div>
           </div>
         </div>
 
         <div class="map" aria-label="v2 판단 흐름">
-          <div class="node" data-step="0"><strong>범위 재확정</strong><span>이미지 교체, AI 실수 장부, UX/검증 보강을 모두 포함합니다.</span></div>
+          <div class="node" data-step="0"><strong>범위 재확정</strong><span>이미지 교체, AI 실수 장부, 복구 시스템, UX/검증 보강을 모두 포함합니다.</span></div>
           <div class="node" data-step="1"><strong>AI 실수 장부</strong><span>실수, 영향, 재발 방지 규칙, 관련 근거만 기록합니다.</span></div>
           <div class="node" data-step="2"><strong>이미지 기준</strong><span>기존 아트 기준을 보고 프롬프트와 선정 기준을 먼저 정합니다.</span></div>
           <div class="node" data-step="3"><strong>Scene 교체</strong><span>생성/선정한 이미지를 실제 Unity Scene에 반영합니다.</span></div>
-          <div class="node" data-step="4"><strong>UX와 검증</strong><span>진행도, E 표시, 복구 피드백, Game view 검증을 보강합니다.</span></div>
+          <div class="node" data-step="4"><strong>시스템과 UX</strong><span>해금 조건, 진행도, E 표시, Game view 검증을 보강합니다.</span></div>
         </div>
       </section>
 
@@ -572,15 +572,15 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">scope</p>
-            <h2>v2의 세 축</h2>
+            <h2>v2의 주요 축</h2>
           </div>
-          <p class="note">이번 v2는 단순 피드백 보강만이 아니라 실제 이미지 교체와 AI 실수 장부를 명시적 산출물로 포함합니다.</p>
+          <p class="note">이번 v2는 단순 피드백 보강만이 아니라 실제 이미지 교체, 작은 복구 시스템, AI 실수 장부를 명시적 산출물로 포함합니다.</p>
         </div>
 
         <div class="cards">
           <article class="card"><span class="pill">게임 개선</span><h3>이미지 교체</h3><p>복구 대상 3개의 새 이미지를 생성/선정하고 Unity Scene에 실제 적용합니다.</p></article>
           <article class="card"><span class="pill violet">실수 방지</span><h3>AI 실수 장부</h3><p>반복 가능한 실수를 작게 기록하고 다음 작업의 재발 방지 규칙으로 사용합니다.</p></article>
-          <article class="card"><span class="pill water">검증 보강</span><h3>UX와 Game view</h3><p>진행도, E 피드백, 복구 후 시각 피드백을 화면 판독 기준으로 확인합니다.</p></article>
+          <article class="card"><span class="pill water">시스템 보강</span><h3>복구 상태와 해금 조건</h3><p>count 기반으로 복구 가능 상태를 나누고 진행도 UI의 기준을 만듭니다.</p></article>
         </div>
       </section>
 
@@ -631,14 +631,15 @@
         </div>
 
         <div class="timeline">
-          <article class="milestone"><code>V2-M0</code><div><h3>범위 재확정과 현재 상태 확인</h3><p>v2의 세 축과 현재 hook/skill 상태를 확인합니다.</p></div><span class="pill water status">착수</span></article>
+          <article class="milestone"><code>V2-M0</code><div><h3>범위 재확정과 현재 상태 확인</h3><p>v2 주요 축과 현재 hook/skill 상태를 확인합니다.</p></div><span class="pill water status">착수</span></article>
           <article class="milestone"><code>V2-M1</code><div><h3>AI 실수 장부 생성</h3><p>`docs/ai-mistakes.md`를 만들고 첫 기록을 남깁니다.</p></div><span class="pill violet status">장부</span></article>
           <article class="milestone"><code>V2-M2</code><div><h3>이미지 교체 기준 확정</h3><p>아트 기준, 교체 목적, 대상별 프롬프트를 정리합니다.</p></div><span class="pill amber status">기준</span></article>
           <article class="milestone"><code>V2-M3</code><div><h3>이미지 생성과 선정</h3><p>필수 복구 대상 3개의 이미지 후보를 만들고 고릅니다.</p></div><span class="pill amber status">생성</span></article>
           <article class="milestone"><code>V2-M4</code><div><h3>Unity Scene 에셋 교체</h3><p>선정 이미지를 실제 Scene에 반영합니다.</p></div><span class="pill status">Unity</span></article>
-          <article class="milestone"><code>V2-M5</code><div><h3>최소 UX 피드백 보강</h3><p>진행도, E 표시, 복구 후 시각 피드백을 추가합니다.</p></div><span class="pill water status">UX</span></article>
-          <article class="milestone"><code>V2-M6</code><div><h3>Game view / Play Mode 검증</h3><p>로직 통과와 화면 판독을 분리해 기록합니다.</p></div><span class="pill water status">검증</span></article>
-          <article class="milestone"><code>V2-M7</code><div><h3>v2 결과 평가</h3><p>유지할 것, 되돌릴 것, 다음 프로젝트로 넘길 것을 나눕니다.</p></div><span class="pill clay status">평가</span></article>
+          <article class="milestone"><code>V2-M5</code><div><h3>복구 상태와 해금 조건 시스템 보강</h3><p>복구 가능 상태와 count 기반 해금 조건을 추가합니다.</p></div><span class="pill water status">시스템</span></article>
+          <article class="milestone"><code>V2-M6</code><div><h3>최소 UX 피드백 보강</h3><p>진행도, E 표시, 잠김/복구 가능 표시를 추가합니다.</p></div><span class="pill water status">UX</span></article>
+          <article class="milestone"><code>V2-M7</code><div><h3>Game view / Play Mode 검증</h3><p>로직 통과와 화면 판독을 분리해 기록합니다.</p></div><span class="pill water status">검증</span></article>
+          <article class="milestone"><code>V2-M8</code><div><h3>v2 결과 평가</h3><p>유지할 것, 되돌릴 것, 다음 프로젝트로 넘길 것을 나눕니다.</p></div><span class="pill clay status">평가</span></article>
         </div>
       </section>
 
@@ -652,14 +653,15 @@
         </div>
 
         <div class="checks">
-          <div class="checklink"><span class="pill water">V2-M0</span><h3><a href="./milestones/v2/V2-M0-checklist.md">범위 재확정</a></h3><p>v2 세 축과 현재 상태 확인</p></div>
+          <div class="checklink"><span class="pill water">V2-M0</span><h3><a href="./milestones/v2/V2-M0-checklist.md">범위 재확정</a></h3><p>v2 주요 축과 현재 상태 확인</p></div>
           <div class="checklink"><span class="pill violet">V2-M1</span><h3><a href="./milestones/v2/V2-M1-checklist.md">AI 실수 장부</a></h3><p>장부 생성과 첫 기록</p></div>
           <div class="checklink"><span class="pill amber">V2-M2</span><h3><a href="./milestones/v2/V2-M2-checklist.md">이미지 기준</a></h3><p>기준과 프롬프트 정리</p></div>
           <div class="checklink"><span class="pill amber">V2-M3</span><h3><a href="./milestones/v2/V2-M3-checklist.md">이미지 생성</a></h3><p>생성, 선정, 사용성 판단</p></div>
           <div class="checklink"><span class="pill">V2-M4</span><h3><a href="./milestones/v2/V2-M4-checklist.md">Scene 교체</a></h3><p>실제 Unity 적용</p></div>
-          <div class="checklink"><span class="pill water">V2-M5</span><h3><a href="./milestones/v2/V2-M5-checklist.md">UX 보강</a></h3><p>진행도와 E 피드백</p></div>
-          <div class="checklink"><span class="pill water">V2-M6</span><h3><a href="./milestones/v2/V2-M6-checklist.md">검증 보강</a></h3><p>Play Mode와 Game view</p></div>
-          <div class="checklink"><span class="pill clay">V2-M7</span><h3><a href="./milestones/v2/V2-M7-checklist.md">결과 평가</a></h3><p>v1 대비 평가</p></div>
+          <div class="checklink"><span class="pill water">V2-M5</span><h3><a href="./milestones/v2/V2-M5-checklist.md">복구 시스템</a></h3><p>상태와 해금 조건</p></div>
+          <div class="checklink"><span class="pill water">V2-M6</span><h3><a href="./milestones/v2/V2-M6-checklist.md">UX 보강</a></h3><p>진행도와 E 피드백</p></div>
+          <div class="checklink"><span class="pill water">V2-M7</span><h3><a href="./milestones/v2/V2-M7-checklist.md">검증 보강</a></h3><p>Play Mode와 Game view</p></div>
+          <div class="checklink"><span class="pill clay">V2-M8</span><h3><a href="./milestones/v2/V2-M8-checklist.md">결과 평가</a></h3><p>v1 대비 평가</p></div>
         </div>
       </section>
 
@@ -667,7 +669,8 @@
         <h2>읽는 결론</h2>
         <p>
           v2는 Tiny Garden Restore를 크게 키우는 단계가 아닙니다. 하지만 단순 UX 검증만도 아닙니다.
-          실제 Unity Scene 에셋 교체를 포함한 게임 개선과, `docs/ai-mistakes.md`를 통한 반복 실수 관리가 함께 들어가는 후속 마일스톤입니다.
+          실제 Unity Scene 에셋 교체와 count 기반 복구 상태/해금 조건을 포함한 게임 개선,
+          그리고 `docs/ai-mistakes.md`를 통한 반복 실수 관리가 함께 들어가는 후속 마일스톤입니다.
         </p>
       </section>
     </main>
